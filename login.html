@@ -110,10 +110,10 @@
 		        
 		        <div class="checkbox">
 		          <label class="pull-left">
-		            <input type="checkbox" id="rmbUser" name="saveCookie"> 记住账号
+		            <input type="checkbox" id="rmbUser" name="saveCookie"> <strong style="font-family: '微软雅黑';">记住账号</strong>
 		          </label>
 		          <label class="pull-right">
-		            <input type="checkbox" id="rmbPassWord" name="saveCookie"> 记住密码
+		            <input type="checkbox" id="rmbPassWord" name="saveCookie"> <strong style="font-family: '微软雅黑';">记住密码</strong>
 		          </label>
 		        </div>
 		        
@@ -155,12 +155,12 @@
 			
 			// ajaxFormConfig
 			var options = { 
-				type: 'POST',
+				type: 'GET', // 测试暂用GET
 				url: 'login.json',
         success:function(data){ 
 					if(data.success){ 
 						saveUserInfo(); 
-						location.href = "/index.html"; 
+						location.href = "index.html"; 
 					}else{ 
 						alert("用户名或密码错误，请重新登录！"); 
 						return false; 
