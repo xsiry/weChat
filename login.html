@@ -24,6 +24,9 @@
     <!-- jquery-cookie core JS -->
     <script src="js/jquery.cookie.js"></script>
     
+    <!-- jquery-form core JS -->
+    <script src="js/jquery.form.js"></script>
+    
     <!-- 透明背景 -->
     <script type="text/javascript" src="js/background-blur.min.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
@@ -35,7 +38,7 @@
 			/* Content */
 			.avatar-holder {
 				overflow: hidden;
-				height: 460px;
+				height: 430px;
 				text-align: center;
 				position: relative;
 			}
@@ -94,7 +97,7 @@
 		    		</figcaption>
 		    	</figure>
 		    	
-		      <form class="form-signin" id="loginFrom" action="index.html" method="post">
+		      <form class="form-signin" id="loginFrom"> <!-- 方便展示，暂时使用get -->
 		      	
 		        <div class="form-group has-success has-feedback">
 		        		<input type="text" id="inputUsername" name='inputUsername'  class="form-control input-opacity" placeholder="网吧账号" required autofocus>
@@ -107,14 +110,14 @@
 		        
 		        <div class="checkbox">
 		          <label class="pull-left">
-		            <input type="checkbox" id="rmbUser"> 记住账号
+		            <input type="checkbox" id="rmbUser" name="saveCookie"> 记住账号
 		          </label>
 		          <label class="pull-right">
-		            <input type="checkbox" id="rmbPassWord"> 记住密码
+		            <input type="checkbox" id="rmbPassWord" name="saveCookie"> 记住密码
 		          </label>
 		        </div>
 		        
-		        <button class="btn btn-primary btn-block btn-submit" type="submit">登录</button>
+		        <button class="btn btn-primary btn-block" type="submit">登录</button>
 		        
 		      </form>
 				</div>
@@ -150,25 +153,66 @@
   			}
   		});
 			
-  		//初始化页面时验证是否记住了密码 
-  		if ($.cookie("rmbUser") == "true" && $.cookie("rmbPassWord") == "true") { 
-				$("#rmbUser").attr("checked", true); 
-				$("#rmbPassWord").attr("checked", true); 
-				$("#inputUsername").val($.cookie("userName")); 
-				$("#inputPassword").val($.cookie("passWord")); 
+			// ajaxFormConfig
+			var options = { 
+				type: 'POST',
+				url: 'login.json',
+        success:function(data){ 
+					if(data.success){ 
+						saveUserInfo(); 
+						location.href = "/index.html"; 
+					}else{ 
+						alert("用户名或密码错误，请重新登录！"); 
+						return false; 
+					}
+				}
+	    }; 
+ 
+    	// ajaxForm 
+    	$("#loginFrom").ajaxForm(options); 
+    	
+			// 记住密码选中时，记住账号则自动选中 反之
+			$('#rmbPassWord').click(function(){
+				$("#rmbPassWord").is(':checked') == true ? $("#rmbUser").prop("checked", 'true') : $("#rmbUser").prop("checked", false);
+			});
+			
+  		//初始化页面时验证是否记住了帐号
+  		if ($.cookie("rmbUser") == "true") {
+				$("#rmbUser").prop("checked", true);
+				$("#inputUsername").val($.cookie("userName"));
+			};
+			
+			//初始化页面时验证是否记住了密码
+  		if($.cookie("rmbPassWord") == "true"){
+				$("#rmbPassWord").prop("checked", true);
+				$("#inputPassword").val($.cookie("passWord"));
 			};
   		
-  		//保存用户信息
-  		function saveUserInfo() { 
-				if ($("#rmbUser").attr("checked") == true && $.cookie("rmbPassWord") == "true") { 
+  		
+  		//保存用户信息，存储一个带7天期限的 cookie 或者 清除 cookie
+  		function saveUserInfo() {
+  			
+  			// 保存帐号和密码
+				if ($("#rmbUser").is(':checked') == true && $("#rmbPassWord").is(':checked') == true) {
 					var userName = $("#inputUsername").val(); 
 					var passWord = $("#inputPassword").val(); 
-					$.cookie("rmbUser", "true", { expires: 7 }); // 存储一个带7天期限的 cookie 
-					$.cookie("userName", userName, { expires: 7 }); // 存储一个带7天期限的 cookie 
-					$.cookie("passWord", passWord, { expires: 7 }); // 存储一个带7天期限的 cookie 
-				} 
-				else { 
-					$.cookie("rmbUser", "false", { expires: -1 }); 
+					
+					$.cookie("rmbUser", "true", { expires: 7 }); 
+					$.cookie("rmbPassWord", "true", { expires: 7 }); 
+					$.cookie("userName", userName, { expires: 7 }); 
+					$.cookie("passWord", passWord, { expires: 7 });
+					
+				// 只保存帐号
+				} else if ($("#rmbUser").is(':checked') == true) {
+					var userName = $("#inputUsername").val();
+					
+					$.cookie("rmbUser", "true", { expires: 7 }); 
+					$.cookie("userName", userName, { expires: 7 }); 
+					
+				// 清除用户信息的 cookie
+				} else { 
+					$.cookie("rmbUser", "false", { expires: -1 });
+					$.cookie("rmbPassWord", "false", { expires: -1 }); 
 					$.cookie("userName", '', { expires: -1 }); 
 					$.cookie("passWord", '', { expires: -1 }); 
 				}
