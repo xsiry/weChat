@@ -17,7 +17,50 @@
 		<link href="css/bootstrap.css" rel="stylesheet" />
 		<script src="js/bootstrap.js"></script>
 		
+		<!-- 透明背景 -->
+    	<script type="text/javascript" src="js/background-blur.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		
 		<style type="text/css">
+			*{margin:0;padding:0;}
+			a,img{border:0;}
+			
+			/* Content */
+			.avatar-holder {
+				overflow: hidden;
+				height: 200px;
+				text-align: center;
+				position: relative;
+			}
+		
+			.avatar {
+				display: inline-block;
+				position: relative;
+			}
+		
+			.avatar img {
+				width: 80px;
+				height: 80px;
+				margin-top: 30px;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+				border: 5px solid rgba(255,255,255,0.8);
+				transition: 0.3s;
+				cursor: pointer;
+		
+			}
+			.avatar-blur {
+				z-index: -2;
+				position: absolute;
+				min-height: 100%;
+				height: auto;
+				display: block;
+				top: 0;
+				max-height: none;
+				left: -10%;
+				width: 120%;
+			}
 			.row-border {
 				border: solid 1px #C0C0C0;
 			}
@@ -42,24 +85,29 @@
 			.footer-div {
 				padding: 10px;
 			}
+			.btn-quit {
+				position:absolute;
+				top: 20px; 
+				right: 20px;
+			}
+			.dbox{
+				border: solid #31B0D5 1px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="row">
-			<div class="col-xs-3 col-xs-offset-9">
-				<a href="login.html" class="btn btn-sm btn-primary center-block" style="margin-top:30%;">退出</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 col-xs-offset-3">
-				<figure>
-					<img src="img/Hydrangeas.jpg" alt="八仙花" class="img-circle center-block" width="70" height="70">
-					<figcaption class="text-center">
-						<h4><strong>龙腾网吧</strong></h4>
-					</figcaption>
-				</figure>
-			</div>
+		<div class="avatar-holder">	
+			<div class="container">
+			<a href="login.html" class="btn btn-sm btn-primary btn-quit">退出</a>
+		    <div class="avatar">
+
+			<figure>
+				<img src="img/Hydrangeas.jpg" alt="八仙花" class="img-circle">
+				<figcaption>
+					<h4><strong>龙腾网吧</strong></h4>
+				</figcaption>
+			</figure>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">授权台数：198台</div>
@@ -67,7 +115,9 @@
 		<div class="row">
 			<div class="col-xs-12">到期时间：2018-02-15</div>
 		</div>
-		
+		</div>
+		</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-6 row-border div-col">
 				<a href="#" class="a-img">
@@ -81,14 +131,12 @@
 				</a>
 			</div>
 			<div class="col-xs-6 row-border div-col">
-				<a href="#" class="a-img">
-					<figure style="padding-top: 25%;">
+				<a href="#" class="a-img text-center">
+					<div style="padding-top: 40%;">
 						<span class="badge a-span-badge">50</span>
-						<img src="img/icon/png/48323.png" class="center-block" width="70" height="70"/>
-						<figcaption class="text-center">
-							<h5><strong>玩家留言</strong></h5>
-						</figcaption>
-					</figure>
+						<div class="glyphicon glyphicon-save center-block" style="font-size: 60px;color: #999999;text-shadow: black 5px 3px 3px;"></div>
+						<h5><strong>玩家留言</strong></h5>
+					</div>
 				</a>
 			</div>
 		</div>
