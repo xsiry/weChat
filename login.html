@@ -1,223 +1,269 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>方格子</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="xsriy">
+  <title>方格子</title>
+  <!-- JQuery core CSS and JS -->
+  <script src="sea-modules/jquery/jquery-3.1.1.js"></script>
+  <!-- Bootstrap core CSS and JS -->
+  <link href="sea-modules/bootstrap/bootstrap.css" rel="stylesheet" />
+  <script src="sea-modules/bootstrap/bootstrap.js"></script>
+  <!-- bootstrapValidator core CSS and JS -->
+  <link href="sea-modules/bootstrap-validator/bootstrapValidator.css" rel="stylesheet" />
+  <script src="sea-modules/bootstrap-validator/bootstrapValidator.js"></script>
+  <!-- jquery-cookie core JS -->
+  <script src="sea-modules/jquery-cookie/jquery.cookie.js"></script>
+  <!-- jquery-form core JS -->
+  <script src="sea-modules/jquery-form/jquery.form.js"></script>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
-		<!-- JQuery core CSS and JS -->
-		<script src="js/jquery-3.1.1.js"></script>
-	
-    <!-- Bootstrap core CSS and JS -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <script src="js/bootstrap.js"></script>
-    
-    <!-- bootstrapValidator core CSS and JS -->
-    <link href="css/bootstrapValidator.css" rel="stylesheet" />
-    <script src="js/bootstrapValidator.js"></script>
-    
-    <!-- jquery-cookie core JS -->
-    <script src="js/jquery.cookie.js"></script>
-    
-    <!-- jquery-form core JS -->
-    <script src="js/jquery.form.js"></script>
-    
-    <!-- 透明背景 -->
-    <script type="text/javascript" src="js/background-blur.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-    
-    <style>
-    	*{margin:0;padding:0;}
-			a,img{border:0;}
-			
-			/* Content */
-			.avatar-holder {
-				overflow: hidden;
-				height: 430px;
-				text-align: center;
-				position: relative;
-			}
-		
-			.avatar {
-				display: inline-block;
-				position: relative;
-			}
-		
-			.avatar img {
-				width: 100px;
-				height: 100px;
-				margin-top: 20px;
-				-webkit-border-radius: 50%;
-				-moz-border-radius: 50%;
-				border-radius: 50%;
-				border: 5px solid rgba(255,255,255,0.8);
-				transition: 0.3s;
-				cursor: pointer;
-		
-			}
-			.avatar-blur {
-				z-index: -2;
-				position: absolute;
-				min-height: 100%;
-				height: auto;
-				display: block;
-				top: 0;
-				max-height: none;
-				left: -10%;
-				width: 120%;
-			}
-			
-			/* 透明输入框 */
-			.input-opacity{
-		    opacity: 0.6;
-		    transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-		    -webkit-box-shadow:0 0 0px 1000px #ffffff inset;
-		    height:34px;
-		    padding:6px 12px;
-		    border:none;
-			}
-		</style>
-    
-  </head>
+  .has-error .form-control {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
 
-  <body>
-		<div class="avatar-holder">
-	    <div class="container">
-		    <div class="avatar">
-		    	
-		    	<figure>
-		    		<img src="img/logo.jpg" class="center-block" />
-		    		<figcaption>
-		    			<h4 class="form-signin-heading text-center text-info"><strong>方格子●网吧管理平台</strong></h4>
-		    		</figcaption>
-		    	</figure>
-		    	
-		      <form class="form-signin" id="loginFrom"> <!-- 方便展示，暂时使用get -->
-		      	
-		        <div class="form-group has-success has-feedback">
-		        		<input type="text" id="inputUsername" name='inputUsername'  class="form-control input-opacity" placeholder="网吧账号" required autofocus>
-		        		<span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
-		        </div>
-		        <div class="form-group has-success has-feedback">
-		        		<input type="password" id="inputPassword" name='inputPassword' class="form-control input-opacity" placeholder="密码" required>
-		        		<span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
-		        </div>
-		        
-		        <div class="checkbox">
-		          <label class="pull-left">
-		            <input type="checkbox" id="rmbUser" name="saveCookie"> <strong style="font-family: '微软雅黑';">记住账号</strong>
-		          </label>
-		          <label class="pull-right">
-		            <input type="checkbox" id="rmbPassWord" name="saveCookie"> <strong style="font-family: '微软雅黑';">记住密码</strong>
-		          </label>
-		        </div>
-		        
-		        <button class="btn btn-primary btn-block" type="submit">登录</button>
-		        
-		      </form>
-				</div>
-	    </div> <!-- /container -->
-		</div>
-  </body>
-  
-  <script type="text/javascript">
-  	$(document).ready(function(){
-			// bootstrapValidator 验证
-  		$('#loginFrom').bootstrapValidator({
-  			message: '该项不能为空',
-  			fields: {
-  				inputUsername: {
-  					message: '账号不能为空',
-  					validators: {
-  						notEmpty: {
-  							message: '账号不能为空'
-  						},
-  						regexp: {
-  							regexp: /^[a-zA-Z0-9_]+$/,
-  							message: '账号只能由字母、数字和下划线组成'
-  						}
-  					}
-  				},
-  				inputPassword: {
-  					validators: {
-  						notEmpty: {
-  							message: '密码不能为空'
-  						}
-  					}
-  				}
-  			}
-  		});
-			
-			// ajaxFormConfig
-			var options = { 
-				type: 'GET', // 测试暂用GET
-				url: 'login.json',
-        success:function(data){ 
-					if(data.success){ 
-						saveUserInfo(); 
-						location.href = "index.html"; 
-					}else{ 
-						alert("用户名或密码错误，请重新登录！"); 
-						return false; 
-					}
-				}
-	    }; 
- 
-    	// ajaxForm 
-    	$("#loginFrom").ajaxForm(options); 
-    	
-			// 记住密码选中时，记住账号则自动选中 反之
-			$('#rmbPassWord').click(function(){
-				$("#rmbPassWord").is(':checked') == true ? $("#rmbUser").prop("checked", 'true') : $("#rmbUser").prop("checked", false);
-			});
-			
-  		//初始化页面时验证是否记住了帐号
-  		if ($.cookie("rmbUser") == "true") {
-				$("#rmbUser").prop("checked", true);
-				$("#inputUsername").val($.cookie("userName"));
-			};
-			
-			//初始化页面时验证是否记住了密码
-  		if($.cookie("rmbPassWord") == "true"){
-				$("#rmbPassWord").prop("checked", true);
-				$("#inputPassword").val($.cookie("passWord"));
-			};
-  		
-  		
-  		//保存用户信息，存储一个带7天期限的 cookie 或者 清除 cookie
-  		function saveUserInfo() {
-  			
-  			// 保存帐号和密码
-				if ($("#rmbUser").is(':checked') == true && $("#rmbPassWord").is(':checked') == true) {
-					var userName = $("#inputUsername").val(); 
-					var passWord = $("#inputPassword").val(); 
-					
-					$.cookie("rmbUser", "true", { expires: 7 }); 
-					$.cookie("rmbPassWord", "true", { expires: 7 }); 
-					$.cookie("userName", userName, { expires: 7 }); 
-					$.cookie("passWord", passWord, { expires: 7 });
-					
-				// 只保存帐号
-				} else if ($("#rmbUser").is(':checked') == true) {
-					var userName = $("#inputUsername").val();
-					
-					$.cookie("rmbUser", "true", { expires: 7 }); 
-					$.cookie("userName", userName, { expires: 7 }); 
-					
-				// 清除用户信息的 cookie
-				} else { 
-					$.cookie("rmbUser", "false", { expires: -1 });
-					$.cookie("rmbPassWord", "false", { expires: -1 }); 
-					$.cookie("userName", '', { expires: -1 }); 
-					$.cookie("passWord", '', { expires: -1 }); 
-				}
-			}
-  	})
-  </script>
+  .has-error .form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .has-success .form-control {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .has-success .form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  footer {
+    background-size: cover;
+    background: url(./static/images/u2702.png) no-repeat;
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 290px;
+  }
+
+  footer p {
+    color: #ffffff;
+    font-size: 1.6rem;
+    position: fixed;
+    bottom: 8px;
+    width: 100%;
+  }
+
+  form div {
+    padding: 10px 0px 0px 0px;
+  }
+
+  form button {
+    position: relative;
+    top: 15px;
+  }
+
+  .container {
+    width: 90%;
+    padding-top: 40px;
+  }
+
+  .subimt_btn {
+    background-color: white;
+    color: chartreuse;
+    border: 1px solid chartreuse;
+  }
+
+  .btn:hover,
+  .btn:focus,
+  .btn.focus {
+    color: chartreuse;
+    text-decoration: none;
+  }
+
+  .input-opacity {
+    opacity: 0.6;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+    height: 34px;
+    padding: 6px 12px;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+    background-color: #fff;
+  }
+  </style>
+</head>
+
+<body>
+  <header></header>
+  <section>
+    <div class="container">
+      <h3 class="form-signin-heading text-center text-info"><strong>方格子●网吧管理平台</strong></h3>
+      <form class="form-signin" id="loginFrom">
+        <!-- 方便展示，暂时使用get -->
+        <div class="form-group has-feedback">
+          <input type="text" id="inputUsername" name='inputUsername' class="form-control input-opacity" placeholder="网吧账号" required autofocus>
+          <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" id="inputPassword" name='inputPassword' class="form-control input-opacity" placeholder="密码" required>
+          <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <div class="checkbox">
+          <label class="pull-left">
+            <input type="checkbox" class="checkbox style-0" id="rmbUser" name="saveCookie">
+            <span><strong style="font-family: '微软雅黑';">记住账号</strong></span>
+          </label>
+          <label class="pull-right">
+            <input type="checkbox" class="checkbox style-0" id="rmbPassWord" name="saveCookie">
+            <span><strong style="font-family: '微软雅黑';">记住密码</strong></span>
+          </label>
+        </div>
+        <button class="btn btn-block subimt_btn" type="submit">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+      </form>
+    </div>
+    <!-- /container -->
+  </section>
+  <footer>
+    <p>上海网恒文化传播有限公司</p>
+  </footer>
+</body>
+<!-- JQuery core CSS and JS -->
+<script src="sea-modules/jquery/jquery-3.1.1.js"></script>
+<!-- Bootstrap core CSS and JS -->
+<script src="sea-modules/bootstrap/bootstrap.js"></script>
+<!-- bootstrapValidator core CSS and JS -->
+<script src="sea-modules/bootstrap-validator/bootstrapValidator.js"></script>
+<!-- jquery-cookie core JS -->
+<script src="sea-modules/jquery-cookie/jquery.cookie.js"></script>
+<!-- jquery-form core JS -->
+<script src="sea-modules/jquery-form/jquery.form.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  // bootstrapValidator 验证
+  $('#loginFrom').bootstrapValidator({
+    message: '该项不能为空',
+    fields: {
+      inputUsername: {
+        message: '账号不能为空',
+        validators: {
+          notEmpty: {
+            message: '账号不能为空'
+          },
+          regexp: {
+            regexp: /^[a-zA-Z0-9_]+$/,
+            message: '账号只能由字母、数字和下划线组成'
+          }
+        }
+      },
+      inputPassword: {
+        validators: {
+          notEmpty: {
+            message: '密码不能为空'
+          }
+        }
+      }
+    }
+  });
+
+  // ajaxFormConfig
+  var options = {
+    type: 'GET', // 测试暂用GET
+    url: 'login.json',
+    success: function(data) {
+      if (data.success) {
+        saveUserInfo();
+        location.href = "index.html";
+      } else {
+        alert("用户名或密码错误，请重新登录！");
+        return false;
+      }
+    }
+  };
+
+  // ajaxForm
+  $("#loginFrom").ajaxForm(options);
+
+  // 记住密码选中时，记住账号则自动选中 反之
+  $('#rmbPassWord').click(function() {
+    $("#rmbPassWord").is(':checked') == true ? $("#rmbUser").prop("checked", 'true') : $("#rmbUser").prop("checked", false);
+  });
+
+  //初始化页面时验证是否记住了帐号
+  if ($.cookie("rmbUser") == "true") {
+    $("#rmbUser").prop("checked", true);
+    $("#inputUsername").val($.cookie("userName"));
+  };
+
+  //初始化页面时验证是否记住了密码
+  if ($.cookie("rmbPassWord") == "true") {
+    $("#rmbPassWord").prop("checked", true);
+    $("#inputPassword").val($.cookie("passWord"));
+  };
+
+
+  //保存用户信息，存储一个带7天期限的 cookie 或者 清除 cookie
+  function saveUserInfo() {
+
+    // 保存帐号和密码
+    if ($("#rmbUser").is(':checked') == true && $("#rmbPassWord").is(':checked') == true) {
+      var userName = $("#inputUsername").val();
+      var passWord = $("#inputPassword").val();
+
+      $.cookie("rmbUser", "true", {
+        expires: 7
+      });
+      $.cookie("rmbPassWord", "true", {
+        expires: 7
+      });
+      $.cookie("userName", userName, {
+        expires: 7
+      });
+      $.cookie("passWord", passWord, {
+        expires: 7
+      });
+
+      // 只保存帐号
+    } else if ($("#rmbUser").is(':checked') == true) {
+      var userName = $("#inputUsername").val();
+
+      $.cookie("rmbUser", "true", {
+        expires: 7
+      });
+      $.cookie("userName", userName, {
+        expires: 7
+      });
+
+      // 清除用户信息的 cookie
+    } else {
+      $.cookie("rmbUser", "false", {
+        expires: -1
+      });
+      $.cookie("rmbPassWord", "false", {
+        expires: -1
+      });
+      $.cookie("userName", '', {
+        expires: -1
+      });
+      $.cookie("passWord", '', {
+        expires: -1
+      });
+    }
+  }
+})
+</script>
+
 </html>
-
