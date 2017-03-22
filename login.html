@@ -16,111 +16,30 @@
   <script src="sea-modules/bootstrap/bootstrap.js"></script>
   <!-- bootstrapValidator core CSS and JS -->
   <link href="sea-modules/bootstrap-validator/bootstrapValidator.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="static/login/style.css">
+
   <script src="sea-modules/bootstrap-validator/bootstrapValidator.js"></script>
   <!-- jquery-cookie core JS -->
   <script src="sea-modules/jquery-cookie/jquery.cookie.js"></script>
   <!-- jquery-form core JS -->
   <script src="sea-modules/jquery-form/jquery.form.js"></script>
-  <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  .has-error .form-control {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .has-error .form-control:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .has-success .form-control {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .has-success .form-control:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  footer {
-    background-size: cover;
-    background: url(./static/images/u2702.png) no-repeat;
-    position: fixed;
-    bottom: 0;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-    height: 290px;
-  }
-
-  footer p {
-    color: #ffffff;
-    font-size: 1.6rem;
-    position: fixed;
-    bottom: 8px;
-    width: 100%;
-  }
-
-  form div {
-    padding: 10px 0px 0px 0px;
-  }
-
-  form button {
-    position: relative;
-    top: 15px;
-  }
-
-  .container {
-    width: 90%;
-    padding-top: 40px;
-  }
-
-  .subimt_btn {
-    background-color: white;
-    color: chartreuse;
-    border: 1px solid chartreuse;
-  }
-
-  .btn:hover,
-  .btn:focus,
-  .btn.focus {
-    color: chartreuse;
-    text-decoration: none;
-  }
-
-  .input-opacity {
-    opacity: 0.6;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
-    height: 34px;
-    padding: 6px 12px;
-    border: none;
-    border-bottom: 1px solid;
-    border-radius: 0px;
-    background-color: #fff;
-  }
-  </style>
 </head>
 
 <body>
   <header></header>
   <section>
     <div class="container">
-      <h3 class="form-signin-heading text-center text-info"><strong>方格子●网吧管理平台</strong></h3>
+      <div class="header">方格子●网吧管理平台</div>
       <form class="form-signin" id="loginFrom">
         <!-- 方便展示，暂时使用get -->
         <div class="form-group has-feedback">
           <input type="text" id="inputUsername" name='inputUsername' class="form-control input-opacity" placeholder="网吧账号" required autofocus>
-          <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-user form-control-feedback icon" aria-hidden="true"></span>
         </div>
         <div class="form-group has-feedback">
           <input type="password" id="inputPassword" name='inputPassword' class="form-control input-opacity" placeholder="密码" required>
-          <span class="glyphicon glyphicon-lock form-control-feedback" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-lock form-control-feedback icon" aria-hidden="true"></span>
         </div>
         <div class="checkbox">
           <label class="pull-left">
@@ -151,119 +70,17 @@
 <script src="sea-modules/jquery-cookie/jquery.cookie.js"></script>
 <!-- jquery-form core JS -->
 <script src="sea-modules/jquery-form/jquery.form.js"></script>
+<script type="text/javascript" src="sea-modules/seajs/sea.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
-  // bootstrapValidator 验证
-  $('#loginFrom').bootstrapValidator({
-    message: '该项不能为空',
-    fields: {
-      inputUsername: {
-        message: '账号不能为空',
-        validators: {
-          notEmpty: {
-            message: '账号不能为空'
-          },
-          regexp: {
-            regexp: /^[a-zA-Z0-9_]+$/,
-            message: '账号只能由字母、数字和下划线组成'
-          }
-        }
-      },
-      inputPassword: {
-        validators: {
-          notEmpty: {
-            message: '密码不能为空'
-          }
-        }
-      }
-    }
+  seajs.config({
+    base: "../sea-modules/",
+    alias: {}
   });
-
-  // ajaxFormConfig
-  var options = {
-    type: 'GET', // 测试暂用GET
-    url: 'login.json',
-    success: function(data) {
-      if (data.success) {
-        saveUserInfo();
-        location.href = "index.html";
-      } else {
-        alert("用户名或密码错误，请重新登录！");
-        return false;
-      }
-    }
-  };
-
-  // ajaxForm
-  $("#loginFrom").ajaxForm(options);
-
-  // 记住密码选中时，记住账号则自动选中 反之
-  $('#rmbPassWord').click(function() {
-    $("#rmbPassWord").is(':checked') == true ? $("#rmbUser").prop("checked", 'true') : $("#rmbUser").prop("checked", false);
-  });
-
-  //初始化页面时验证是否记住了帐号
-  if ($.cookie("rmbUser") == "true") {
-    $("#rmbUser").prop("checked", true);
-    $("#inputUsername").val($.cookie("userName"));
-  };
-
-  //初始化页面时验证是否记住了密码
-  if ($.cookie("rmbPassWord") == "true") {
-    $("#rmbPassWord").prop("checked", true);
-    $("#inputPassword").val($.cookie("passWord"));
-  };
-
-
-  //保存用户信息，存储一个带7天期限的 cookie 或者 清除 cookie
-  function saveUserInfo() {
-
-    // 保存帐号和密码
-    if ($("#rmbUser").is(':checked') == true && $("#rmbPassWord").is(':checked') == true) {
-      var userName = $("#inputUsername").val();
-      var passWord = $("#inputPassword").val();
-
-      $.cookie("rmbUser", "true", {
-        expires: 7
-      });
-      $.cookie("rmbPassWord", "true", {
-        expires: 7
-      });
-      $.cookie("userName", userName, {
-        expires: 7
-      });
-      $.cookie("passWord", passWord, {
-        expires: 7
-      });
-
-      // 只保存帐号
-    } else if ($("#rmbUser").is(':checked') == true) {
-      var userName = $("#inputUsername").val();
-
-      $.cookie("rmbUser", "true", {
-        expires: 7
-      });
-      $.cookie("userName", userName, {
-        expires: 7
-      });
-
-      // 清除用户信息的 cookie
-    } else {
-      $.cookie("rmbUser", "false", {
-        expires: -1
-      });
-      $.cookie("rmbPassWord", "false", {
-        expires: -1
-      });
-      $.cookie("userName", '', {
-        expires: -1
-      });
-      $.cookie("passWord", '', {
-        expires: -1
-      });
-    }
-  }
-})
+  // 加载入口模块
+  seajs.use("./static/login/src/main")
+});
 </script>
 
 </html>

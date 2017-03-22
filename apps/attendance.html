@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="../sea-modules/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/css/global.css" />
+  <link rel="stylesheet" type="text/css" href="../static/attendance/style.css" />
+</head>
+<style type="text/css">
+body {
+  background-color: #cccccc;
+}
+
+.top_div {
+  width: 95%;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.font_color {
+  color: #34b64a;
+  font-weight: bold;
+}
+
+a:focus,
+a:hover {
+  color: #23527c;
+  text-decoration: none;
+}
+</style>
+
+<body>
+  <div class="top_div">
+    <p class="prompt">网吧上座情况</p>
+    <p class="prompt">机器总数：<span class="total_machine"></span>台</p>
+    <p class="prompt">当前在线：<span class="c-4 online_machine"></span>台</p>
+    <p class="prompt">今日最高上座率：<span class="c-4 top_online"></span></p>
+  </div>
+  <div class="top_div" style="margin-top:20px;">
+    <table class="table">
+      <caption>最近七天网吧上机情况:</caption>
+      <thead>
+        <tr>
+          <th class="text-left">日期</th>
+          <th class="text-center">上线机器</th>
+          <th class="text-right">开机率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="display:none;"></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bottom-fxied">
+    <div>
+      <a href="javascript:void(0);" class="attendance_bbtn">
+        <img src="../static/images/u2414.png" />
+        <p class="c-4">上座率</p>
+      </a>
+    </div>
+    <div>
+      <a href="javascript:void(0);" class="message_bbtn">
+        <img src="../static/images/u2412.png" />
+        <p>留言板</p>
+      </a>
+    </div>
+    <div>
+      <a href="javascript:void(0);" class="download_bbtn">
+        <img src="../static/images/u2416.png" />
+        <p>下游戏</p>
+      </a>
+    </div>
+    <div>
+      <a href="javascript:void(0);" class="notice_bbtn">
+        <img src="../static/images/u2410.png" />
+        <p>看通知</p>
+      </a>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../sea-modules/jquery/jquery-3.1.1.js">
+</script>
+<script type="text/javascript" src="../sea-modules/seajs/sea.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  seajs.use("../static/attendance/src/main")
+})
+</script>
+
+</html>

@@ -1,165 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<meta name="description" content="">
-		<meta name="author" content="">
-		
-		<title>方格子</title>
-		
-		<!-- JQuery core CSS and JS -->
-		<script src="js/jquery-3.1.1.js"></script>
-		
-		<!-- Bootstrap core CSS and JS -->
-		<link href="css/bootstrap.css" rel="stylesheet" />
-		<script src="js/bootstrap.js"></script>
-		
-		<!-- 透明背景 -->
-    	<script type="text/javascript" src="js/background-blur.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-		
-		<style type="text/css">
-			*{margin:0;padding:0;}
-			a,img{border:0;}
-			
-			/* Content */
-			.avatar-holder {
-				overflow: hidden;
-				height: 200px;
-				text-align: center;
-				position: relative;
-			}
-		
-			.avatar {
-				display: inline-block;
-				position: relative;
-			}
-		
-			.avatar img {
-				width: 80px;
-				height: 80px;
-				margin-top: 30px;
-				-webkit-border-radius: 50%;
-				-moz-border-radius: 50%;
-				border-radius: 50%;
-				border: 5px solid rgba(255,255,255,0.8);
-				transition: 0.3s;
-				cursor: pointer;
-		
-			}
-			.avatar-blur {
-				z-index: -2;
-				position: absolute;
-				min-height: 100%;
-				height: auto;
-				display: block;
-				top: 0;
-				max-height: none;
-				left: -10%;
-				width: 120%;
-			}
-			.row-border {
-				border: solid 1px #C0C0C0;
-			}
-			.a-img:link {
-				text-decoration:none;
-				color: #999999;
-			}
-			.a-img:hover {
-				text-decoration:none;
-				color: #999999;
-			}
-			.a-span-badge {
-				position: absolute; 
-				top: 15%;
-				right: 16%;
-				background-color: #67B168;
-			}
-			.div-col {
-				height:0px; 
-				padding-bottom:50%;
-			}
-			.footer-div {
-				padding: 10px;
-			}
-			.btn-quit {
-				position:absolute;
-				top: 20px; 
-				right: 20px;
-			}
-			.dbox{
-				border: solid #31B0D5 1px;
-			}
-		</style>
-	</head>
 
-	<body>
-		<div class="avatar-holder">	
-			<div class="container">
-			<a href="login.html" class="btn btn-sm btn-primary btn-quit">退出</a>
-		    <div class="avatar">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="xsiry">
+  <title>方格子</title>
+  <!-- JQuery core CSS and JS -->
+  <script src="sea-modules/jquery/jquery-3.1.1.js"></script>
+  <!-- Bootstrap core CSS and JS -->
+  <link href="sea-modules/bootstrap/bootstrap.css" rel="stylesheet" />
+  <script src="sea-modules/bootstrap/bootstrap.js"></script>
+  <link rel="stylesheet" href="static/css/global.css" />
+</head>
 
-			<figure>
-				<img src="img/Hydrangeas.jpg" alt="八仙花" class="img-circle">
-				<figcaption>
-					<h4><strong>龙腾网吧</strong></h4>
-				</figcaption>
-			</figure>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">授权台数：198台</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">到期时间：2018-02-15</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 row-border div-col">
-				<a href="#" class="a-img text-center">
-					<div style="padding-top: 40%;">
-						<span class="badge a-span-badge">50</span>
-						<div class="glyphicon glyphicon-th center-block" style="font-size: 60px;color: #999999;text-shadow: black 5px 3px 3px;"></div>
-						<h5><strong>上座情况</strong></h5>
-					</div>
-				</a>
-			</div>
-			<div class="col-xs-6 row-border div-col">
-				<a href="#" class="a-img text-center">
-					<div style="padding-top: 40%;">
-						<span class="badge a-span-badge">50</span>
-						<div class="glyphicon glyphicon-phone-alt center-block" style="font-size: 60px;color: #999999;text-shadow: black 5px 3px 3px;"></div>
-						<h5><strong>玩家留言</strong></h5>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6 row-border div-col">
-				<a href="#" class="a-img text-center">
-					<div style="padding-top: 40%;">
-						<span class="badge a-span-badge">50</span>
-						<div class="glyphicon glyphicon-save center-block" style="font-size: 60px;color: #999999;text-shadow: black 5px 3px 3px;"></div>
-						<h5><strong>游戏下载</strong></h5>
-					</div>
-				</a>
-			</div>
-			<div class="col-xs-6 row-border div-col">
-				<a href="#" class="a-img text-center">
-					<div style="padding-top: 40%;">
-						<span class="badge a-span-badge">50</span>
-						<div class="glyphicon glyphicon-comment center-block" style="font-size: 60px;color: #999999;text-shadow: black 5px 3px 3px;"></div>
-						<h5><strong>重要通知</strong></h5>
-					</div>
-				</a>
-			</div>
-		</div>
-	</body>
-	<footer class="text-center footer-div">
-		<a href="">上海网恒文化传播有限公司</a>
-	</footer>
+<body>
+  <div class="quit-div">
+    <button class="loginout">退出</button>
+  </div>
+  <div class="log-img"><img class="netbar_icon" /></div>
+  <div class="you-name"></div>
+  <p class="show-p">授权台数：<span class="authorized_num"></span>台</p>
+  <p class="show-p">到期时间：<span class="due_time"></span></p>
+  <div class="select-area">
+    <div class="select-item">
+      <a href="javascript:void(0);" class="attendance_btn">
+        <img src="static/images/u2648.png" />
+        <p>上座情况</p>
+      </a>
+    </div>
+    <div class="select-item left-b">
+      <div class="message_count clue"></div>
+      <a href="javascript:void(0);" class="message_btn">
+        <img src="static/images/u2660.png" />
+        <p>玩家留言</p>
+      </a>
+    </div>
+    <div class="select-item">
+      <a href="javascript:void(0);" class="download_btn">
+        <img src="static/images/u2668.png" />
+        <p>游戏下载</p>
+      </a>
+    </div>
+    <div class="select-item left-b">
+      <div class="notice_count clue"></div>
+      <a href="javascript:void(0);" class="notice_btn">
+        <img src="static/images/u2670.png" />
+        <p>重要通知</p>
+      </a>
+    </div>
+    <div class="wangheng">上海网恒文化传播有限公司</div>
+  </div>
+</body>
+<script type="text/javascript" src="sea-modules/seajs/sea.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  seajs.config({
+    base: "../sea-modules/",
+    alias: {}
+  });
+  // 加载入口模块
+  seajs.use("./static/index/src/main")
+});
+</script>
 </html>
