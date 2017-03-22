@@ -37,31 +37,38 @@
 
 
 <div class="bottom-fxied">
-    <div>
-        <a href="">
-            <img src="../static/images/u2466.png" />
-            <p>上座率</p>
-        </a>
+   <div>
+      <a href="javascript:void(0);" class="attendance_bbtn">
+        <img src="../static/images/u2466.png" />
+        <p>上座率</p>
+      </a>
     </div>
     <div>
-        <a href="">
-            <img src="../static/images/u2412.png" />
-            <p>留言板</p>
-        </a>
+      <a href="javascript:void(0);" class="message_bbtn">
+        <img src="../static/images/u2412.png" />
+        <p>留言板</p>
+      </a>
     </div>
     <div>
-        <a href="">
-            <img src="../static/images/u2524.png" />
-            <p class="c-4">下游戏</p>
-        </a>
+      <a href="javascript:void(0);" class="download_bbtn">
+        <img src="../static/images/u2524.png" />
+        <p class="c-4">下游戏</p>
+      </a>
     </div>
     <div>
-        <a href="">
-            <img src="../static/images/u2410.png" />
-            <p>看通知</p>
-        </a>
+      <a href="javascript:void(0);" class="notice_bbtn">
+        <img src="../static/images/u2410.png" />
+        <p>看通知</p>
+      </a>
     </div>
 </div>
 
 </body>
+<script type="text/javascript" src="../sea-modules/jquery/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="../sea-modules/seajs/sea.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        seajs.use('../static/download/src/main');
+    })
+</script>
 </html>
