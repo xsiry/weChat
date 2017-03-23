@@ -11,31 +11,40 @@ define(function(require, exports, module) {
       $('div.name-title span').text('龙腾网吧');
     },
     _bindUI: function() {
-      $.root_.on('click', '.reply_btn', function() {
-
+      $.root_.on('click', '.search_btn', function() {
+        searchGames();
       })
     },
     _loadContent: function() {
       ajaxData();
-      loadMessages();
+      loadTopGames();
     }
   }
 
   function ajaxData() {
-    mData = []
+    mData = ['英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟','英雄联盟']
   }
 
-  function loadMessages() {
-    var html = '';
-    for (var i in mData) {
-      var m = mData[i];
-      html += '<div class="content-block content-block-m ' + (m[2] ? '':'c-b') + '">';
-      html += '<h3 class="">'+ m[0] +'</h3><p>' + m[1] + '</p>';
-      html += '<div class="content-bottom"><span>' + m[3] + '</span>';
-      html += '<span class="pull-right"><a class="del_msg_btn ' + (m[2] ? '':'c-b') + '">' + (m[2] ? '已读' : '未读') + '</a></span>';
-      html += '</div></div>';
-    }
+  function loadTopGames() {
+    $.each(mData, function(index, obj) {
+      var row = "<tr><td class='text-center'>" + (index+1);
+      row += "</td><td class='text-center'>" + obj;
+      row += "</td></tr>";
 
-    $('div.notice_content').append(html);
+      $('div.top_games table:first tbody tr:last').after(row);
+    })
+  }
+
+  function searchGames() {
+    $('div.search_games').show();
+    $('div.search_games table:first tbody').removeData().html("<tr style='display:none;'></tr>")
+    var games = ['英雄联盟百宝箱','英雄联盟百宝箱','英雄联盟百宝箱','英雄联盟百宝箱','英雄联盟百宝箱']
+    $.each(games, function(index, obj) {
+      var row = "<tr><td class='text-center'>" + obj;
+      row += "</td><td class='text-center'><a>下载</a>";
+      row += "</td></tr>";
+
+      $('div.search_games table:first tbody tr:last').after(row);
+    })
   }
 })

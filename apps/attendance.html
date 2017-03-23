@@ -3,28 +3,28 @@
   <span></span> | 网吧概况
 </div>
 <div class="margin-t-4">
-<div class="top_div">
-  <p class="prompt">网吧上座情况</p>
-  <p class="prompt">机器总数：<span class="total_machine"></span>台</p>
-  <p class="prompt">当前在线：<span class="c-4 online_machine"></span>台</p>
-  <p class="prompt">今日最高上座率：<span class="c-4 top_online"></span></p>
-</div>
-<div class="top_div" style="margin-top:20px;">
-  <table class="table">
-    <caption>最近七天网吧上机情况:</caption>
-    <thead>
-      <tr>
-        <th class="text-left">日期</th>
-        <th class="text-center">上线机器</th>
-        <th class="text-right">开机率</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="display:none;"></tr>
-    </tbody>
-  </table>
-</div>
+  <div class="top_div">
+    <p class="prompt">网吧上座情况：</p>
+    <p class="prompt">机器总数：<span class="total_machine"></span>台</p>
+    <p class="prompt">当前在线：<span class="c-4 online_machine"></span>台</p>
+    <p class="prompt">今日最高上座率：<span class="c-4 top_online"></span></p>
   </div>
+  <div class="top_div" style="margin-top:20px;">
+    <table class="table">
+      <caption>最近七天网吧上机情况：</caption>
+      <thead>
+        <tr>
+          <th class="text-left">日期</th>
+          <th class="text-center">上线机器</th>
+          <th class="text-right">开机率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="display:none;"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
   seajs.use("../static/attendance/src/main")

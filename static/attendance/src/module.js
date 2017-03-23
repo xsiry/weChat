@@ -46,6 +46,13 @@ define(function(require, exports, module) {
   }
 
   function ajaxData() {
+    // $.ajax({
+    //     url: "http://union.nmenu.cn/ZnwbInterface/GetNetbarInfoByUCID.ashx?ucid=297884",
+    //     type: "post",
+    //     dataType: "json",
+    //     data: { Action: "GuideManagementCheck", AjaxFllage: true },
+    //     success: function (value) { }
+    //     });
     mData = { "resultStatus": 1, "resultMsg": "sussce", "netbarName": "华艺网吧", "netbarTCount": 95, "ot1": { "tempDate": "2017/3/22 0:45:06", "OnlineT": 73 }, "ot2": { "tempDate": "2017/3/21 0:46:16", "OnlineT": 77 }, "ot3": { "tempDate": "2017/3/20 0:42:27", "OnlineT": 80 }, "ot4": { "tempDate": "2017/3/19 0:41:21", "OnlineT": 75 }, "ot5": { "tempDate": "2017/3/18 -0:39:43", "OnlineT": 69 }, "ot6": { "tempDate": "2017/3/17 0:38:37", "OnlineT": 64 }, "ot7": { "tempDate": "2017/3/16 0:39:45", "OnlineT": 66 } }
   }
 })
