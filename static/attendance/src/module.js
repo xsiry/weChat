@@ -23,14 +23,15 @@ define(function(require, exports, module) {
   }
 
   function loadAttendanceList() {
-    // $.each(mData, function(index, obj) {
-    //   var row = "<tr><td class='text-left'>" + d[0];
-    //   row += "</td><td class='text-center font_color'>" + d[1];
-    //   row += "</td><td class='text-right font_color'>" + d[2];
-    //   row += "</td></tr>";
+    mData = [["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%']]
+    $.each(mData, function(index, obj) {
+      var row = "<tr><td class='text-left'>" + obj[0];
+      row += "</td><td class='text-center font_color'>" + obj[1];
+      row += "</td><td class='text-right font_color'>" + obj[2];
+      row += "</td></tr>";
 
-    //   $('table:first tbody tr:last').after(row);
-    // })
+      $('table:first tbody tr:last').after(row);
+    })
   }
 
   function ajaxData() {
