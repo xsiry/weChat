@@ -1,0 +1,21 @@
+body {
+  background-color: #cccccc;
+}
+
+.top_div {
+  width: 95%;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.font_color {
+  color: #34b64a;
+  font-weight: bold;
+}
+
+a:focus,
+a:hover {
+  color: #23527c;
+  text-decoration: none;
+}
