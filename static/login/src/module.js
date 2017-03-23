@@ -38,7 +38,7 @@ define(function(require, exports, module) {
     // ajaxFormConfig
     var options = {
       type: 'GET', // 测试暂用GET
-      url: 'login.json',
+      url: './login.json',
       success: function(data) {
         if (data.success) {
           saveUserInfo();
