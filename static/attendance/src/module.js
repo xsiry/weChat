@@ -6,13 +6,16 @@ define(function(require, exports, module) {
     init: function() {
       this._loadConfig();
       this._bindUI();
+      this._loadContent();
     },
     _loadConfig: function() {
+      $('div.name-title span').text('龙腾网吧');
+    },
+    _bindUI: function() {},
+    _loadContent: function() {
       ajaxData();
       loadAttendance();
       loadAttendanceList();
-    },
-    _bindUI: function() {
     }
   };
 
@@ -23,7 +26,15 @@ define(function(require, exports, module) {
   }
 
   function loadAttendanceList() {
-    mData = [["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%'],["2017/3/22 0:45:06", 66, '98%']]
+    mData = [
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%'],
+      ["2017/3/22 0:45:06", 66, '98%']
+    ]
     $.each(mData, function(index, obj) {
       var row = "<tr><td class='text-left'>" + obj[0];
       row += "</td><td class='text-center font_color'>" + obj[1];
