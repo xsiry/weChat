@@ -10,21 +10,36 @@ define(function(require, exports, module) {
         loadURL('../apps/attendance.html');
         $('div a.bbtn').addClass('grayscale');
         $('div a.attendance_bbtn').removeClass('grayscale');
+
+        $('div p').css('color', '#82858B');
+        $('div a.attendance_bbtn p').css('color', '#4E90FF')
       })
       $.root_.on("click", '.message_bbtn', function(e) {
         loadURL('../apps/message.html');
         $('div a.bbtn').addClass('grayscale');
         $('div a.message_bbtn').removeClass('grayscale');
+
+        $('div p').css('color', '#82858B');
+        $('div a.message_bbtn p').css('color', '#4E90FF')
       })
       $.root_.on("click", '.download_bbtn', function(e) {
         loadURL('../apps/download.html');
         $('div a.bbtn').addClass('grayscale');
         $('div a.download_bbtn').removeClass('grayscale');
+
+        $('div p').css('color', '#82858B');
+        $('div a.download_bbtn p').css('color', '#4E90FF')
       })
       $.root_.on("click", '.notice_bbtn', function(e) {
         loadURL('../apps/notice.html');
         $('div a.bbtn').addClass('grayscale');
         $('div a.notice_bbtn').removeClass('grayscale');
+
+        $('div p').css('color', '#82858B');
+        $('div a.notice_bbtn p').css('color', '#4E90FF')
+      })
+      $.root_.on("click", '.msg_setting', function(e) {
+        loadURL('../apps/message-switch.html');
       })
     },
     _buildMenu: function() {

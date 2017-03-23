@@ -1,81 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="../sea-modules/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../static/css/global.css" />
-  <link rel="stylesheet" href="../static/css/weui.min.css" />
-  <!-- <link rel="stylesheet" href="../static/css/example.css" /> -->
-</head>
-
-<body>
-  <div class="name-title">留言板设置</div>
-  <div class="weui-cells weui-cells_form">
-    <div class="weui-cell weui-cell_switch">
-      <div class="weui-cell__bd">开启留言板功能</div>
-      <div class="weui-cell__ft">
-        <label for="switchC" class="weui-switch-cp">
-          <input id="switchC" class="weui-switch-cp__input" type="checkbox" onclick="CheckAll(this)">
-          <div class="weui-switch-cp__box"></div>
-        </label>
-      </div>
-    </div>
-    <div class="weui-cell weui-cell_switch">
-      <div class="weui-cell__bd">开启留言审核模式</div>
-      <div class="weui-cell__ft">
-        <label for="switchP" class="weui-switch-cp">
-          <input id="switchP" class="weui-switch-cp__input" type="checkbox" onclick="CheckAll(this)">
-          <div class="weui-switch-cp__box"></div>
-        </label>
-      </div>
+<link rel="stylesheet" href="../static/css/weui.min.css" />
+<div class="name-title">留言板设置</div>
+<div class="weui-cells weui-cells_form">
+  <div class="weui-cell weui-cell_switch">
+    <div class="weui-cell__bd">开启留言板功能</div>
+    <div class="weui-cell__ft">
+      <label for="switchC" class="weui-switch-cp">
+        <input id="switchC" class="weui-switch-cp__input" type="checkbox" onclick="CheckAll(this)">
+        <div class="weui-switch-cp__box"></div>
+      </label>
     </div>
   </div>
-  <div class="bottom-fxied">
-    <div>
-      <a href="javascript:void(0);" class="attendance_bbtn">
-        <img src="../static/images/u2466.png" />
-        <p>上座率</p>
-      </a>
-    </div>
-    <div>
-      <a href="javascript:void(0);" class="message_bbtn">
-        <img src="../static/images/u2464.png" />
-        <p class="c-4">留言板</p>
-      </a>
-    </div>
-    <div>
-      <a href="javascript:void(0);" class="download_bbtn">
-        <img src="../static/images/u2416.png" />
-        <p>下游戏</p>
-      </a>
-    </div>
-    <div>
-      <a href="javascript:void(0);" class="notice_bbtn">
-        <img src="../static/images/u2410.png" />
-        <p>看通知</p>
-      </a>
+  <div class="weui-cell weui-cell_switch">
+    <div class="weui-cell__bd">开启留言审核模式</div>
+    <div class="weui-cell__ft">
+      <label for="switchP" class="weui-switch-cp">
+        <input id="switchP" class="weui-switch-cp__input" type="checkbox" onclick="CheckAll(this)">
+        <div class="weui-switch-cp__box"></div>
+      </label>
     </div>
   </div>
-  <script src="../sea-modules/we-chat/zepto.min.js"></script>
-  <!-- <script src="../sea-modules/we-chat/example.js"></script> -->
-  <script type="text/javascript" src="../sea-modules/jquery/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="../sea-modules/seajs/sea.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    seajs.use('../static/message/src/main');
-  });
+</div>
+<script src="../sea-modules/we-chat/zepto.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  seajs.use('../static/message/src/main');
+});
 
-  function CheckAll(obj) {
-    if ($(obj).prop("checked")) {
-      alert('开启！');
-    } else {
-      alert('取消！');
-    }
+function CheckAll(obj) {
+  if ($(obj).prop("checked")) {
+    console.log('开启！');
+  } else {
+    console.log('取消！');
   }
-  </script>
-</body>
-
-</html>
+}
+</script>

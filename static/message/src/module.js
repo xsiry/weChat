@@ -5,9 +5,7 @@ define(function(require, exports, module) {
       this._bindUI();
     },
     _bindUI: function() {
-      $.root_.on("click", '.msg_setting', function(e) {
-        window.location.href = '../apps/message-switch.html';
-      })
+
     }
   }
 })
