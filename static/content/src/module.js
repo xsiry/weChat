@@ -8,15 +8,23 @@ define(function(require, exports, module) {
     _bindUI: function() {
       $.root_.on('click', '.attendance_bbtn', function(e) {
         loadURL('../apps/attendance.html');
+        $('div a.bbtn').addClass('grayscale');
+        $('div a.attendance_bbtn').removeClass('grayscale');
       })
       $.root_.on("click", '.message_bbtn', function(e) {
         loadURL('../apps/message.html');
+        $('div a.bbtn').addClass('grayscale');
+        $('div a.message_bbtn').removeClass('grayscale');
       })
       $.root_.on("click", '.download_bbtn', function(e) {
         loadURL('../apps/download.html');
+        $('div a.bbtn').addClass('grayscale');
+        $('div a.download_bbtn').removeClass('grayscale');
       })
       $.root_.on("click", '.notice_bbtn', function(e) {
         loadURL('../apps/notice.html');
+        $('div a.bbtn').addClass('grayscale');
+        $('div a.notice_bbtn').removeClass('grayscale');
       })
     },
     _buildMenu: function() {
@@ -25,10 +33,10 @@ define(function(require, exports, module) {
   };
 
   function buildMenu() {
-    var menus = [{ class: 'attendance_bbtn', img_src: '../static/images/u2466.png', text: '上座率' },
-      { class: 'message_bbtn', img_src: '../static/images/u2412.png', text: '留言板' },
-      { class: 'download_bbtn', img_src: '../static/images/u2416.png', text: '下游戏' },
-      { class: 'notice_bbtn', img_src: '../static/images/u2410.png', text: '看通知' }
+    var menus = [{ class: 'bbtn attendance_bbtn grayscale', img_src: '../static/images/u2414.png', text: '上座率' },
+      { class: 'bbtn message_bbtn grayscale', img_src: '../static/images/u2464.png', text: '留言板' },
+      { class: 'bbtn download_bbtn grayscale', img_src: '../static/images/u2524.png', text: '下游戏' },
+      { class: 'bbtn notice_bbtn grayscale', img_src: '../static/images/u2591.png', text: '看通知' }
     ]
 
     var html = '';
