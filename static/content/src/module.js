@@ -4,6 +4,13 @@ define(function(require, exports, module) {
     init: function() {
       this._bindUI();
       this._buildMenu();
+      this._main();
+    },
+    _main:function() {
+       var r = window.location.href;
+       r = r.substring(r.indexOf("#")+1,r.length);
+       console.log('.'+ r + '_bbtn')
+       $('.'+ r + '_bbtn').click();
     },
     _bindUI: function() {
       $.root_.on('click', '.attendance_bbtn', function(e) {

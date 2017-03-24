@@ -40,13 +40,13 @@ define(function(require, exports, module) {
       type: 'GET', // 测试暂用GET
       url: './login.json',
       success: function(data) {
-        if (data.success) {
-          saveUserInfo();
+        // if (data.success) {
+        //   saveUserInfo();
           location.href = "index.html";
-        } else {
-          alert("用户名或密码错误，请重新登录！");
-          return false;
-        }
+        // } else {
+        //   alert("用户名或密码错误，请重新登录！");
+        //   return false;
+        // }
       }
     };
 

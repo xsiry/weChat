@@ -17,16 +17,16 @@ define(function(require, exports, module) {
         window.location.href = './login.html';
       })
       $.root_.on("click", '.attendance_btn', function(e) {
-        window.location.href = 'apps/content.html';
+        window.location.href = 'apps/content.html#attendance';
       })
       $.root_.on("click", '.message_btn', function(e) {
-        window.location.href = 'apps/content.html';
+        window.location.href = 'apps/content.html#message';
       })
       $.root_.on("click", '.download_btn', function(e) {
-        window.location.href = 'apps/content.html';
+        window.location.href = 'apps/content.html#download';
       })
       $.root_.on("click", '.notice_btn', function(e) {
-        window.location.href = 'apps/content.html';
+        window.location.href = 'apps/content.html#notice';
       })
     }
   };
