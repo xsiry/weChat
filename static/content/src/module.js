@@ -54,16 +54,16 @@ define(function(require, exports, module) {
   };
 
   function buildMenu() {
-    var menus = [{ class: 'bbtn attendance_bbtn grayscale', img_src: '../static/images/u2414.png', text: '上座率' },
-      { class: 'bbtn message_bbtn grayscale', img_src: '../static/images/u2464.png', text: '留言板' },
-      { class: 'bbtn download_bbtn grayscale', img_src: '../static/images/u2524.png', text: '下游戏' },
-      { class: 'bbtn notice_bbtn grayscale', img_src: '../static/images/u2591.png', text: '看通知' }
+    var menus = [{ classT: 'bbtn attendance_bbtn grayscale', img_src: '../static/images/u2414.png', text: '上座率' },
+      { classT: 'bbtn message_bbtn grayscale', img_src: '../static/images/u2464.png', text: '留言板' },
+      { classT: 'bbtn download_bbtn grayscale', img_src: '../static/images/u2524.png', text: '下游戏' },
+      { classT: 'bbtn notice_bbtn grayscale', img_src: '../static/images/u2591.png', text: '看通知' }
     ]
 
     var html = '';
     for (var i in menus) {
       var m = menus[i];
-      html += '<div><a href="javascript:void(0);" class="' + m.class + '" >';
+      html += '<div><a href="javascript:void(0);" class="' + m.classT + '" >';
       html += '<img src="' + m.img_src + '" /><p>' + m.text + '</p></a></div>';
     }
 
@@ -79,7 +79,7 @@ define(function(require, exports, module) {
       "cache": !0,
       "beforeSend": function() {
         b.removeData().html(""),
-          b.html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> 页面加载中...</h1>'),
+          b.html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> 加载中...</h1>'),
           b[0] == $("#content")[0] && ($("body").find("> *").filter(":not(" + ignore_key_elms + ")").empty().remove(),
             drawBreadCrumb(),
             $("html").animate({
