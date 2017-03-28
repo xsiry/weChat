@@ -10,6 +10,13 @@ define(function(require, exports, module) {
       $.root_.on('click', '.search_btn', function() {
         searchGames();
       })
+      $.root_.on('click', '.download_game_btn', function(actionobj) {
+    	  var rowobj = $(this);
+    	  var gameid = rowobj.data("gameid");
+    	  downloadGame(gameid);
+          actionobj.preventDefault();
+          rowobj = null;
+      })
     },
     _loadContent: function() {
       ajaxData();
@@ -23,7 +30,7 @@ define(function(require, exports, module) {
 	      url: 'topGamesList.json',
 	      dataType: 'json',
 	      success: function(data) {
-	        if (data.sucess) { 
+	        if (data.success) { 
 	        	mData = data.list;
 	        	$('div.name-title span').text(data.netbarName);
 	        	loadTopGames();
@@ -48,7 +55,7 @@ define(function(require, exports, module) {
   function searchGames() {
 	var name = $('.search_name').val();
 	if (name != '') {
-		$('div.search_games').show();
+		$('div.search_games_content').show();
 	    $('div.search_games table:first tbody').removeData().html("<tr style='display:none;'></tr>")
 	    $.ajax({
 		      type: 'GET',
@@ -59,17 +66,16 @@ define(function(require, exports, module) {
 		    	  name: name
 		      },
 		      success: function(data) {
-		        if (data.sucess) { 
+		        if (data.success) { 
 		        	var games = data.list
+		        	var row = '';
 		            $.each(games, function(index, obj) {
-		              if (index <6) {
-		              var row = "<tr><td class='text-left'>" + obj.gamename;
-		              row += "</td><td class='text-center' data-gameid="+ obj.gameid +"><a>下载</a>";
+		              row += "<tr><td class='text-left'>" + obj.gamename;
+		              row += "</td><td class='text-center'><a class='download_game_btn' data-gameid="+ obj.gameid +">下载</a>";
 		              row += "</td></tr>";
-
-		              $('div.search_games table:first tbody tr:last').after(row);
-		              }
 		            })
+		            $('table caption span').text(games.length);
+		            $('div.search_games table:first tbody tr:last').after(row);
 		        }
 		      },
 		      error: function(e) {
@@ -77,8 +83,32 @@ define(function(require, exports, module) {
 		      }
 		    });
 	}else{
-		$('div.search_games').hide();
+		$('div.search_games_content').hide();
 	    $('div.search_games table:first tbody').removeData().html("<tr style='display:none;'></tr>")
 	}
+  }
+  
+  function downloadGame(gameid) {
+	  $.ajax({
+	      type: 'GET',
+	      contentType: 'application/json',
+	      url: 'downloadGame.json',
+	      data: {
+	    	gameid: gameid
+	      },
+	      dataType: 'json',
+	      success: function(data) {
+	        if (data) { 
+	        	$('a[data-gameid='+ gameid +']').text('下载成功');
+	        	$('a[data-gameid='+ gameid +']').css('color', '#66e46b');
+	        }else {
+	        	$('a[data-gameid='+ gameid +']').text("下载失败");
+	        	$('a[data-gameid='+ gameid +']').css('color', '#e85a4f');
+	        }
+	      },
+	      error: function(e) {
+	        console.log(e);
+	      }
+	    });
   }
 })

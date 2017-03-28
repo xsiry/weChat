@@ -1,7 +1,13 @@
 .margin-t-4 {
   margin-top: 4rem;
 }
-
+.search_games_content {
+	margin-top: 20px;
+	overflow-y: auto;
+	border-radius: 5px;
+	height: 250px; 
+	display: none;
+}
 .search_games {
   width: 95%;
   background-color: #FFFFFF;
