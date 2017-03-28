@@ -9,7 +9,6 @@ define(function(require, exports, module) {
     _main:function() {
        var r = window.location.href;
        r = r.substring(r.indexOf("#")+1,r.length);
-       console.log('.'+ r + '_bbtn')
        $('.'+ r + '_bbtn').click();
     },
     _bindUI: function() {

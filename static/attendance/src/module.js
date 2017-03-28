@@ -4,41 +4,25 @@ define(function(require, exports, module) {
 
   module.exports = {
     init: function() {
-      this._loadConfig();
-      this._bindUI();
-      this._loadContent();
+      this._loadData();
     },
-    _loadConfig: function() {
-      $('div.name-title span').text('龙腾网吧');
-    },
-    _bindUI: function() {},
-    _loadContent: function() {
+    _loadData: function() {
       ajaxData();
-      loadAttendance();
-      loadAttendanceList();
     }
   };
 
   function loadAttendance() {
+	$('.name-title span').text(mData.netbarName);
     $('.total_machine').text(mData.netbarTCount);
     $('.online_machine').text(88);
     $('.top_online').text('84%');
   }
 
   function loadAttendanceList() {
-    mData = [
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%'],
-      ["2017/3/22 0:45:06", 66, '98%']
-    ]
-    $.each(mData, function(index, obj) {
-      var row = "<tr><td class='text-left'>" + obj[0];
-      row += "</td><td class='text-center font_color'>" + obj[1];
-      row += "</td><td class='text-right font_color'>" + obj[2];
+    $.each(mData.otlist, function(index, obj) {
+      var row = "<tr><td class='text-left'>" + obj.tempDate;
+      row += "</td><td class='text-center font_color'>" + obj.OnlineT;
+      row += "</td><td class='text-right font_color'>" + (obj.OnlineT/mData.netbarTCount*100).toFixed(0) + '%';
       row += "</td></tr>";
 
       $('table:first tbody tr:last').after(row);
@@ -46,13 +30,23 @@ define(function(require, exports, module) {
   }
 
   function ajaxData() {
-    // $.ajax({
-    //     url: "http://union.nmenu.cn/ZnwbInterface/GetNetbarInfoByUCID.ashx?ucid=297884",
-    //     type: "post",
-    //     dataType: "json",
-    //     data: { Action: "GuideManagementCheck", AjaxFllage: true },
-    //     success: function (value) { }
-    //     });
-    mData = { "resultStatus": 1, "resultMsg": "sussce", "netbarName": "华艺网吧", "netbarTCount": 95, "ot1": { "tempDate": "2017/3/22 0:45:06", "OnlineT": 73 }, "ot2": { "tempDate": "2017/3/21 0:46:16", "OnlineT": 77 }, "ot3": { "tempDate": "2017/3/20 0:42:27", "OnlineT": 80 }, "ot4": { "tempDate": "2017/3/19 0:41:21", "OnlineT": 75 }, "ot5": { "tempDate": "2017/3/18 -0:39:43", "OnlineT": 69 }, "ot6": { "tempDate": "2017/3/17 0:38:37", "OnlineT": 64 }, "ot7": { "tempDate": "2017/3/16 0:39:45", "OnlineT": 66 } }
+	$.ajax({
+      type: 'GET',
+      contentType: 'application/json',
+      url: 'loadIndexData.json',
+      dataType: 'json',
+      success: function(data) {
+        if (data.success) {
+        	var result = JSON.parse(data.result);
+            mData = {"netbarName": result.netbarName, "netbarTCount": result.netbarTCount};
+			mData.otlist = [result.ot1, result.ot2, result.ot3, result.ot4, result.ot5, result.ot6, result.ot7]
+			loadAttendance();
+			loadAttendanceList();
+        }
+      },
+      error: function(e) {
+        console.log(e);
+      }
+    });
   }
 })

@@ -57,9 +57,13 @@ form button {
 }
 
 .subimt_btn {
+  margin-top: 40px;
   background-color: white;
   color: chartreuse;
   border: 1px solid chartreuse;
+}
+.login_msg {
+  color: red;
 }
 
 .btn:hover,

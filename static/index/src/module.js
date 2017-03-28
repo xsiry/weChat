@@ -14,7 +14,7 @@ define(function(require, exports, module) {
     _bindUI: function() {
       // bind .name_search_btn
       $.root_.on("click", '.loginout', function(e) {
-        window.location.href = './login.html';
+    	loginOut();
       })
       $.root_.on("click", '.attendance_btn', function(e) {
         window.location.href = 'apps/content.html#attendance';
@@ -33,10 +33,25 @@ define(function(require, exports, module) {
 
   // Helpers
   function loadNetBarConfig() {
-    $('.netbar_icon').prop('src', 'static/images/u2646.png');
-    $('.you-name').text('龙腾网吧');
-    $('.authorized_num').text(198);
-    $('.due_time').text('2018-02-15');
+	  $.ajax({
+	      type: 'GET',
+	      contentType: 'application/json',
+	      url: '/weChat/apps/loadIndexData.json',
+	      dataType: 'json',
+	      success: function(data) {
+	        if (data.success) {
+	        	var result = JSON.parse(data.result);
+	        	$('.netbar_icon').prop('src', 'static/images/u2646.png');
+	            $('.you-name').text(result.netbarName);
+	            $('.authorized_num').text(result.netbarTCount);
+	            $('.due_time').text('2018-02-15');
+	        }
+	      },
+	      error: function(e) {
+	        $('.login_msg').text(e);
+	      }
+	    });
+    
   }
 
   function messageCount() {
@@ -55,4 +70,19 @@ define(function(require, exports, module) {
       $('.notice_count').text(count);
     }
   }
+  
+  function loginOut() {
+	    $.ajax({
+	      type: 'GET',
+	      contentType: 'application/json',
+	      url: 'loginOut.json',
+	      dataType: 'json',
+	      success: function(data) {
+	    	  if (data) {
+	    		  window.location.href = 'login.html';
+	    	  }
+	      },
+	      error: function(e) {}
+	    });
+	  }
 })

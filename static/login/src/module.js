@@ -1,9 +1,16 @@
 define(function(require, exports, module) {
+  $.root_ = $('#loginFrom');
   module.exports = {
 
     init: function() {
+      this._bindUI();
       inputValidator();
-    }
+    },
+    _bindUI: function() {
+      $.root_.on('click', '.subimt_btn', function() {
+        loginSubmit();
+      })
+    },
   };
 
   // Helpers
@@ -14,7 +21,7 @@ define(function(require, exports, module) {
     $('#loginFrom').bootstrapValidator({
       message: '该项不能为空',
       fields: {
-        inputUsername: {
+        username: {
           message: '账号不能为空',
           validators: {
             notEmpty: {
@@ -26,7 +33,7 @@ define(function(require, exports, module) {
             }
           }
         },
-        inputPassword: {
+        password: {
           validators: {
             notEmpty: {
               message: '密码不能为空'
@@ -35,23 +42,6 @@ define(function(require, exports, module) {
         }
       }
     });
-    // ajaxFormConfig
-    var options = {
-      type: 'GET', // 测试暂用GET
-      url: './login.json',
-      success: function(data) {
-        // if (data.success) {
-        //   saveUserInfo();
-          location.href = "index.html";
-        // } else {
-        //   alert("用户名或密码错误，请重新登录！");
-        //   return false;
-        // }
-      }
-    };
-
-    // ajaxForm
-    $("#loginFrom").ajaxForm(options);
 
     // 记住密码选中时，记住账号则自动选中 反之
     $('#rmbPassWord').click(function() {
@@ -70,6 +60,31 @@ define(function(require, exports, module) {
       $("#inputPassword").val($.cookie("passWord"));
     };
   };
+
+  function loginSubmit() {
+    $.ajax({
+      type: 'POST',
+      contentType: 'application/json',
+      url: 'login.json',
+      data: JSON.stringify({
+        username: $('#inputUsername').val(),
+        password: $('#inputPassword').val()
+      }),
+      dataType: 'json',
+      success: function(data) {
+        if (data) {
+          $('.login_msg').text("登陆成功！");
+          saveUserInfo();
+          location.href = "index.html";
+        } else {
+          $('.login_msg').text("登陆失败！用户名或密码错误！");
+        }
+      },
+      error: function(e) {
+        $('.login_msg').text(e);
+      }
+    });
+  }
 
   //保存用户信息，存储一个带7天期限的 cookie 或者 清除 cookie
   function saveUserInfo() {

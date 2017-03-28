@@ -3,12 +3,8 @@ define(function(require, exports, module) {
   var mData;
   module.exports = {
     init: function() {
-      this._loadConfig();
       this._bindUI();
       this._loadContent();
-    },
-    _loadConfig: function() {
-      $('div.name-title span').text('龙腾网吧');
     },
     _bindUI: function() {
       $.root_.on('click', '.reply_btn', function() {
@@ -17,26 +13,43 @@ define(function(require, exports, module) {
     },
     _loadContent: function() {
       ajaxData();
-      loadMessages();
     }
   }
 
   function ajaxData() {
-    mData = [['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了',true,'2016-12-09 16:32'],
-    ['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了',false,'2016-12-09 16:32']];
-  }
+	  $.ajax({
+	      type: 'GET',
+	      contentType: 'application/json',
+	      url: 'infoDelivery.json',
+	      dataType: 'json',
+	      success: function(data) {
+	        if (data.sucess) { 
+	        	mData = data.list;
+	        	$('div.name-title span').text(data.netbarName);
+	        	loadMessages();
+	        }
+	      },
+	      error: function(e) {
+	        console.log(e);
+	      }
+	    });
+     }
 
   function loadMessages() {
     var html = '';
-    for (var i in mData) {
-      var m = mData[i];
-      html += '<div class="content-block content-block-m ' + (m[2] ? '':'c-b') + '">';
-      html += '<h3 class="">'+ m[0] +'</h3><p>' + m[1] + '</p>';
-      html += '<div class="content-bottom"><span>' + m[3] + '</span>';
-      html += '<span class="pull-right"><a class="del_msg_btn ' + (m[2] ? '':'c-b') + '">' + (m[2] ? '已读' : '未读') + '</a></span>';
+    $.each(mData, function(index, obj) {
+      var unixTimestamp = new Date(obj.idfixedtime) ;
+      commonTime = toLocaleString(unixTimestamp);
+      html += '<div class="content-block content-block-m ' + (obj.wxread ? '':'c-b') + '">';
+      html += '<h3 class="">'+ obj.idtitle +'</h3><p>' + obj.idcontent + '</p>';
+      html += '<div class="content-bottom"><span>' + commonTime + '</span>';
+      html += '<span class="pull-right"><a class="msg_details_btn ' + (obj.wxread ? '':'c-b') + ' data-infoid= '+ obj.infoid +' ">详细</a></span>';
       html += '</div></div>';
-    }
+    })
 
     $('div.notice_content').append(html);
   }
+  function toLocaleString(date) {
+      return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 " + date.getHours() + "点" + date.getMinutes() + "分" + date.getSeconds() + "秒";
+  };
 })

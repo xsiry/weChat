@@ -25,6 +25,24 @@ define(function(require, exports, module) {
   }
 
   function ajaxData() {
+	  $.ajax({
+	      type: 'GET',
+	      contentType: 'application/json',
+	      url: 'loadIndexData/'+ 297884 +'.json',
+	      dataType: 'json',
+	      success: function(data) {
+	        if (data.success) {
+	        	var result = JSON.parse(data.result);
+	            mData = {"netbarName": result.netbarName, "netbarTCount": result.netbarTCount};
+				mData.otlist = [result.ot1, result.ot2, result.ot3, result.ot4, result.ot5, result.ot6, result.ot7]
+				loadAttendance();
+				loadAttendanceList();
+	        }
+	      },
+	      error: function(e) {
+	        console.log(e);
+	      }
+	    });
     mData = [['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了','分手的距离看风景独守空房惊世毒妃第十六届','2016-12-09 16:32'],
     ['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了','','2016-12-09 16:32']];
   }
