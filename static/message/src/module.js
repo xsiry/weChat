@@ -3,12 +3,8 @@ define(function(require, exports, module) {
   var mData;
   module.exports = {
     init: function() {
-      this._loadConfig();
       this._bindUI();
       this._loadContent();
-    },
-    _loadConfig: function() {
-      $('div.name-title span').text('龙腾网吧');
     },
     _bindUI: function() {
       $.root_.on('click', '.reply_btn', function() {
@@ -20,7 +16,6 @@ define(function(require, exports, module) {
     },
     _loadContent: function() {
       ajaxData();
-      loadMessages();
     }
   }
 
@@ -28,36 +23,52 @@ define(function(require, exports, module) {
 	  $.ajax({
 	      type: 'GET',
 	      contentType: 'application/json',
-	      url: 'loadIndexData/'+ 297884 +'.json',
+	      url: 'getMsgs.json',
 	      dataType: 'json',
 	      success: function(data) {
 	        if (data.success) {
-	        	var result = JSON.parse(data.result);
-	            mData = {"netbarName": result.netbarName, "netbarTCount": result.netbarTCount};
-				mData.otlist = [result.ot1, result.ot2, result.ot3, result.ot4, result.ot5, result.ot6, result.ot7]
-				loadAttendance();
-				loadAttendanceList();
+	        	mData = data.list;
+	        	$('div.name-title span').text(data.netbarName);
+	        	loadMessages();
 	        }
 	      },
 	      error: function(e) {
 	        console.log(e);
 	      }
 	    });
-    mData = [['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了','分手的距离看风景独守空房惊世毒妃第十六届','2016-12-09 16:32'],
-    ['辖区网吧下周安装净网先锋', '网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的请退出营销大师后重新登录就好了网吧英雄网吧英雄联盟加载报错的，请退出营销大师后重新登录就好了','','2016-12-09 16:32']];
   }
 
   function loadMessages() {
     var html = '';
-    for (var i in mData) {
-      var m = mData[i];
+    $.each(mData, function(index, obj) {
+      var unixTimestamp = new Date(obj.createTime) ;
+      commonTime = toLocaleString(unixTimestamp);
       html += '<div class="content-block content-block-m">';
-      html += '<h3 class="">'+ m[0] +'</h3><p>' + m[1] + '</p>';
-      html += m[2] == '' ? '' : '<div class="ad-Reply"><span>管理员回复：</span>' + m[2] + '</div>';
-      html += '<div class="content-bottom"><span>' + m[3] + '</span>';
-      html += '<span class="pull-right"><a class="del_msg_btn">删除</a></span><span class="pull-right"><a class="reply_btn">回复</a></span></div></div>';
-    }
+      html += '<h3 class="">'+ obj.machineNo +' 号机玩家留言</h3><p>' + obj.content + '</p>';
+      html += obj.adminReply == null ? '' : '<div class="ad-Reply"><span>管理员回复：</span>' + obj.adminReply + '</div>';
+      html += '<div class="content-bottom"><span>' + commonTime + '</span>';
+      html += '<span class="pull-right"><a class="del_msg_btn" data-msgid='+ obj.msgid +' >删除</a></span><span class="pull-right"><a class="reply_btn" data-msgid='+ obj.msgid +' >回复</a></span></div></div>';
+    })
 
     $('div.msg_content').append(html);
   }
+  
+  function toLocaleString(myDate) {
+	function p(s) {
+      return s < 10 ? '0' + s : s;
+    }
+    //获取当前年
+    var year = myDate.getFullYear();
+    //获取当前月
+    var month = myDate.getMonth() + 1;
+    //获取当前日
+    var date = myDate.getDate();
+
+    var h = myDate.getHours(); //获取当前小时数(0-23)
+    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+    var s = myDate.getSeconds();
+
+    var now = [year, p(month), p(date)].join('-') + " " + [p(h), p(m), p(s)].join(':');
+    return now;
+  };
 })
