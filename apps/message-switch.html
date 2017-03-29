@@ -5,7 +5,7 @@
     <div class="weui-cell__bd">开启留言审核模式</div>
     <div class="weui-cell__ft">
       <label for="switchP" class="weui-switch-cp">
-        <input id="switchP" class="weui-switch-cp__input" type="checkbox" onclick="CheckAll(this)">
+        <input id="switchP" class="weui-switch-cp__input msg_checkout" type="checkbox" onclick="CheckAll(this)">
         <div class="weui-switch-cp__box"></div>
       </label>
     </div>
@@ -15,13 +15,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
   seajs.use('../static/message/src/main');
+  setStatus('GET');
 });
 
 function CheckAll(obj) {
   if ($(obj).prop("checked")) {
-    console.log('开启！');
+    setStatus('POST');
   } else {
-    console.log('取消！');
+    setStatus('DELETE');
   }
 }
+
+function setStatus(type)  {
+	  $.ajax({
+	      type: type,
+	      contentType: 'application/json',
+	      url: 'syssetMsg.do',
+	      dataType: 'json',
+	      success: function(data) {
+	      	if (data && type == "GET") {
+	      		$('.msg_checkout').prop("checked", "checked");
+	      	}
+	      },
+	      error: function(e) {
+	        console.log(e);
+	      }
+	    });
+  }
 </script>
