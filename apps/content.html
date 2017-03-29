@@ -2,47 +2,60 @@
 <html lang="zh-CN">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <meta name="description" content="">
-  <meta name="author" content="xsiry">
-  <title>微信</title>
-  <link rel="stylesheet" href="../sea-modules/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="../static/css/global.css" />
-  <style type="text/css">
-  body {
-    background-color: #E4E4E4;
-  }
-  .grayscale {
-    /**  格式，filer: grayscale(效果范围)
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="">
+<meta name="author" content="xsiry">
+<title>微信</title>
+<link rel="stylesheet" href="../sea-modules/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="../static/css/global.css" />
+<style type="text/css">
+body {
+	background-color: #E4E4E4;
+}
+
+.grayscale {
+	/**  格式，filer: grayscale(效果范围)
      *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
      */
-    -webkit-filter: grayscale(100%) opacity(40%);
-    -o-filter: grayscale(100%) opacity(40%);
-    -moz-filter: grayscale(100%) opacity(40%);
-    -ms-filter: grayscale(100%) opacity(40%);
-    filter: grayscale(100%) opacity(40%);
-  }
-  .bottom-fxied a, a:hover, a:focus {
-    text-decoration: none;
-  }
-  </style>
+	-webkit-filter: grayscale(100%) opacity(40%);
+	-o-filter: grayscale(100%) opacity(40%);
+	-moz-filter: grayscale(100%) opacity(40%);
+	-ms-filter: grayscale(100%) opacity(40%);
+	filter: grayscale(100%) opacity(40%);
+}
+
+.bottom-fxied a, a:hover, a:focus {
+	text-decoration: none;
+}
+
+.afresh_login {
+	color: rgb(78, 144, 255);
+	text-decoration: underline;
+}
+</style>
 </head>
 
 <body>
-  <div class="content">
-  </div>
-  <div class="bottom-fxied menus">
-  </div>
+	<div class="alert alert-warning noping_msg"
+		style="display:none;position: relative;z-index: 10;margin-bottom: 0px;">
+		<a href="javascript:void(0)" class="close close_ping_msg">×</a> <strong>警告！</strong><span>登陆超时，请<a
+			href='javascript:void(0)' class='afresh_login'>&nbsp;重新登陆&nbsp;</a>！
+		</span>
+	</div>
+	<div class="content"></div>
+	<div class="bottom-fxied menus"></div>
 </body>
-<script type="text/javascript" src="../sea-modules/jquery/jquery-3.1.1.js"></script>
+<script type="text/javascript"
+	src="../sea-modules/jquery/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="../sea-modules/seajs/sea.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-  seajs.use('../static/content/src/main');
-})
+	$(document).ready(function() {
+		seajs.use('../static/content/src/main');
+	})
 </script>
 
 </html>
