@@ -1,108 +1,263 @@
+<link rel="stylesheet" href="../static/css/weui.min.css" />
 <style type="text/css">
-  .content-bottom span a {
-    color: #4E90FF;
-  }
-  .msg_content {
-  	margin-bottom: 65px;
-  }
-  .reply_content {
-  	margin-bottom: 54px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: rgba(17, 17, 17, 0.90);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
-    display: none;
-  }
-  .reply_msg{
-  	margin-left: 10px;
-  	width: 80%;
-    opacity:0.95;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  }
-  pre {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    white-space: pre-wrap;
-    word-break: normal;
-  }
-  .flex {
-  	background: #fff;
-  	border: none;
-    border-radius: 4px;
-    max-height: 112px;
-    min-height: 46px;
-    padding-left: 10px;
-    padding-right: 10px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    outline: none;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  .reply_msg_btn button{
-  	margin-right: 10px;
-  }
-  .reply_title {
-  	margin-left: 10px;
-    margin-bottom: 3px;
-    background: rgba(17, 17, 17, 0);
-    margin-right: 10px;
-    font-size: 18px;
-    color: #fff;
-    width: 80%;
-    padding: 0px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  }
-  
-  .reply_commit_btn {
-  	position: fixed;
-    right: 0;
-    bottom: 0;
-    margin-bottom: 60px;
-    margin-right: 10px;
-  }
-  .reply_cancel_btn {
-  	position: fixed;
-    right: 0;
-    bottom: 0;
-    margin-bottom: 99px;
-    margin-right: 10px;
-  }
+.content-bottom span a {
+	color: #4E90FF;
+}
+
+.reply_content {
+	margin-bottom: 54px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: rgba(17, 17, 17, 0.90);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px;
+	display: none;
+}
+
+.reply_msg {
+	margin-left: 10px;
+	width: 80%;
+	opacity: 0.95;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+pre {
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	white-space: pre-wrap;
+	word-break: normal;
+}
+
+.flex {
+	background: #fff;
+	border: none;
+	border-radius: 4px;
+	max-height: 112px;
+	min-height: 46px;
+	padding-left: 10px;
+	padding-right: 10px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	outline: none;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.reply_msg_btn button {
+	margin-right: 10px;
+}
+
+.reply_title {
+	margin-left: 10px;
+	margin-bottom: 3px;
+	background: rgba(17, 17, 17, 0);
+	margin-right: 10px;
+	font-size: 18px;
+	color: #fff;
+	width: 80%;
+	padding: 0px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.reply_commit_btn {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 63px;
+	margin-right: 10px;
+}
+
+.reply_cancel_btn {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 102px;
+	margin-right: 10px;
+}
+
+.msg_setting {
+	background-color: deepskyblue;
+	position: fixed;
+	right: 0;
+	margin: 10px 100px;
+}
+
+.tools_div {
+	transition: transform 0.5s;
+    transform: translate(159px,0px);
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.weui-cells {
+	opacity: 0.9;
+	margin-top: 3px;
+	background-color: #1d242a;
+	line-height: 16px;
+	font-size: 16px;
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius:5px;
+}
+
+.weui-cell {
+	padding: 0px 5px;
+}
+
+.weui-cell_switch {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.weui-switch-cp {
+	padding-top: 7px;
+}
+
+.weui-cell__bd {
+	margin-right: 7px;
+}
+
+/*右箭头*/
+.right {
+	margin-top: -2px;
+	margin-left: 3px;
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	left: 0;
+}
+
+.right-arrow1, .right-arrow2 {
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	left: 0;
+	border-top: 10px transparent dashed;
+	border-right: 10px transparent dashed;
+	border-bottom: 10px transparent dashed;
+	border-left: 10px white solid;
+	overflow: hidden;
+}
+
+.right-arrow1 {
+	left: 1px; /*重要*/
+	border-left: 10px #fff solid;
+}
+
+.right-arrow2 {
+	border-left: 10px white solid;
+}
+
+/*左箭头*/
+.left {
+	margin-top: -2px;
+	margin-left: -8px;
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	left: 0;
+}
+
+.left-arrow1, .left-arrow2 {
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	left: 0;
+	border-top: 10px transparent dashed;
+	border-left: 10px transparent dashed;
+	border-bottom: 10px transparent dashed;
+	border-right: 10px white solid;
+	overflow: hidden;
+}
+
+.left-arrow1 {
+	border-right: 10px #fff solid;
+}
+
+.left-arrow2 {
+	left: 1px; /*重要*/
+	border-right: 10px white solid;
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+	opacity: initial;
+}
+
 </style>
-<div class="name-title">
-  <span></span> | 留言板
-  <a href="javascript:void(0)" class="pull-right msg_setting"><img src="../static/images/u2708.png" /> 设置</a>
+<div class="msg_setting img-circle">
+	<div class="tools_div">
+		<div class="weui-cells weui-cells_form">
+			<div class="weui-cell weui-cell_switch">
+				<div class="weui-cell__bd">
+					<div class="arrow-left arrow-box" >
+	        			<a class="left_btn" href="#">
+	        			<b class="left">
+	        				<i class="left-arrow1"></i>
+	        				<i class="left-arrow2"></i>
+	        			</b>
+	        			</a>
+    				</div>
+					<div class="arrow-right arrow-box" style="display:none;">
+						<a class="right_btn" href="#">
+						<b class="right">
+							<i class="right-arrow1"></i> 
+							<i class="right-arrow2"></i>
+						</b>
+						</a>
+					</div>
+					&nbsp;&nbsp;&nbsp;留言审核模式
+				</div>
+				<div class="weui-cell__ft">
+					<label for="switchP" class="weui-switch-cp"> 
+						<input id="switchP" class="weui-switch-cp__input msg_checkout" type="checkbox">
+						<div class="weui-switch-cp__box"></div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="margin-t-3 msg_content">
-</div>
+<div class="msg_content"></div>
 
 <div class="reply_content">
-	<div class="reply_title">回复：<span class="reply_number_msg"></span> 号机玩家 <span class="msgid_msg" style="display:none;"></span></div>
+	<div class="reply_title">
+		回复：<span class="reply_number_msg"></span> 号机玩家 <span class="msgid_msg"
+			style="display:none;"></span>
+	</div>
 	<div class="reply_msg pull-left">
-		<pre id="editArea" contenteditable-directive="" mm-paste="" contenteditable="true" class="flex"></pre> 
+		<pre id="editArea" contenteditable-directive="" mm-paste=""
+			contenteditable="true" class="flex"></pre>
 	</div>
 	<div class="pull-right reply_msg_btn">
-	<button type="button" class="btn btn-info reply_cancel_btn">取消</button>
-	<button type="button" class="btn btn-success reply_commit_btn">回复</button>
+		<button type="button" class="btn btn-info reply_cancel_btn">取消</button>
+		<button type="button" class="btn btn-success reply_commit_btn">回复</button>
 	</div>
 </div>
 
+<script src="../sea-modules/we-chat/zepto.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-  seajs.use('../static/message/src/main');
-});
+	$(document).ready(function() {
+		seajs.use('../static/message/src/main');
+	});
 </script>
+
