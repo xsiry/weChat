@@ -20,6 +20,7 @@ define(function(require, exports, module) {
     	  $('.notice_detail').hide();
     	  $('.content-block_'+ infoid).addClass('c-b');
     	  $('.msg_details_btn_'+ infoid).addClass('c-b');
+    	  $('.idcontent_'+ infoid).addClass('c-b');
     	  $('.notice_content').show();
     	  actionobj.preventDefault();
           rowobj = null;
@@ -55,7 +56,7 @@ define(function(require, exports, module) {
       var unixTimestamp = new Date(obj.idfixedtime) ;
       commonTime = toLocaleString(unixTimestamp);
       html += '<div class="content-block content-block-m content-block_'+ obj.infoid +' ' + (obj.wxread==0 ? '':'c-b') + '">';
-      html += '<h3 class="notice_title'+ obj.infoid +'">'+ obj.idtitle +'</h3><p>' + obj.idcontent.substring(0,20) + '</p><div class="notice_content'+ obj.infoid +'" style="display:none;">' + obj.idcontent + '</div>';
+      html += '<h3 class="notice_title'+ obj.infoid +'">'+ obj.idtitle +'</h3><p class="idcontent_'+ obj.infoid +' ' + (obj.wxread==0 ? '':'c-b') + '">' + obj.idcontent.substring(0,20) + ((obj.idcontent.length >= 20) ? '……' : '')  + '</p><div class="notice_content'+ obj.infoid +'" style="display:none;">' + obj.idcontent + '</div>';
       html += '<div class="content-bottom"><span class="notice_time'+ obj.infoid +'">' + commonTime + '</span>';
       html += '<span class="pull-right"><a class="btn btn-info btn-xs msg_details_btn msg_details_btn_'+ obj.infoid + ' ' + (obj.wxread==0 ? '':'c-b') + '" data-infoid= '+ obj.infoid +' >详细</a></span>';
       html += '</div></div>';

@@ -71,6 +71,10 @@ define(function(require, exports, module) {
         password: $('#inputPassword').val()
       }),
       dataType: 'json',
+      beforeSend: function() {
+    	  $('.subimt_btn').prop("disabled","disabled");
+    	  $('.login_msg').text("正在登陆，请稍等...");
+      },
       success: function(data) {
         if (data) {
           $('.login_msg').text("登陆成功！");
@@ -79,10 +83,12 @@ define(function(require, exports, module) {
         } else {
           $('.login_msg').text("登陆失败！用户名或密码错误！");
         }
+        $('.subimt_btn').removeAttr("disabled");
       },
-      error: function(e) {
-        $('.login_msg').text(e);
-      }
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          $('.subimt_btn').removeAttr("disabled");
+          $('.login_msg').html("请求对象XMLHttpRequest: " + XMLHttpRequest.responseText + " ,错误类型textStatus: " + textStatus + ",异常对象errorThrown: " + errorThrown);
+        }
     });
   }
 
