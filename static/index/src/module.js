@@ -38,7 +38,7 @@ define(function(require, exports, module) {
         if (data.success) {
           var result = JSON.parse(data.result);
           $('.netbar_icon').prop('src', '../static/images/u2646.png');
-          $('.you-name').text(result.netbarName);
+          $('.you-name').text(data.netbarinfo.netbarname);
           $('.authorized_num').text(result.netbarTCount);
           $('.due_time').text('2018-02-15');
         }

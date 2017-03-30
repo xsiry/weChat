@@ -1,5 +1,15 @@
 @CHARSET "UTF-8";
 
-body {
-    background-color: #FFFFFF;
+html,body {
+	margin: 0 auto;
+	height: 100%;
+	background-color: #FFFFFF;
+}
+
+.svg_icon {
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	vertical-align: top;
+	pointer-events: none;
 }

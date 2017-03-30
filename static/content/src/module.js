@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	$.root_ = $('body');
-	var _interval;
+	var _activate;
 	module.exports = {
 		init : function() {
 			this._bindUI();
@@ -20,44 +20,24 @@ define(function(require, exports, module) {
 		},
 		_bindUI : function() {
 			$.root_.on('click', '.attendance_bbtn', function(e) {
-				loadURL('../apps/attendance.html');
-				$('div.menus').show();
-				$('div a.bbtn').addClass('grayscale');
-				$('div a.attendance_bbtn').removeClass('grayscale');
-
-				$('div p').css('color', '#82858B');
-				$('div a.attendance_bbtn p').css('color', '#4E90FF')
+				var name = 'attendance';
+				initBtn(name);
+				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
 			})
 			$.root_.on("click", '.message_bbtn', function(e) {
-				loadURL('../apps/message.html');
-				$('div.menus').show();
-				$('div a.bbtn').addClass('grayscale');
-				$('div a.message_bbtn').removeClass('grayscale');
-
-				$('div p').css('color', '#82858B');
-				$('div a.message_bbtn p').css('color', '#4E90FF')
+				var name = 'message';
+				initBtn(name);
+				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
 			})
 			$.root_.on("click", '.download_bbtn', function(e) {
-				loadURL('../apps/download.html');
-				$('div.menus').show();
-				$('div a.bbtn').addClass('grayscale');
-				$('div a.download_bbtn').removeClass('grayscale');
-
-				$('div p').css('color', '#82858B');
-				$('div a.download_bbtn p').css('color', '#4E90FF')
+				var name = 'download';
+				initBtn(name);
+				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
 			})
 			$.root_.on("click", '.notice_bbtn', function(e) {
-				loadURL('../apps/notice.html');
-				$('div.menus').show();
-				$('div a.bbtn').addClass('grayscale');
-				$('div a.notice_bbtn').removeClass('grayscale');
-
-				$('div p').css('color', '#82858B');
-				$('div a.notice_bbtn p').css('color', '#4E90FF')
-			})
-			$.root_.on("click", '.msg_setting', function(e) {
-				loadURL('../apps/message-switch.html');
-				$('div.menus').show();
+				var name = 'notice';
+				initBtn(name);
+				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
 			})
 			$.root_.on("click", '.afresh_login', function(e) {
 				loginOut();
@@ -76,23 +56,23 @@ define(function(require, exports, module) {
 
 	function buildMenu() {
 		var menus = [ {
-			classT : 'bbtn attendance_bbtn grayscale',
-			img_src : '../static/images/u2414.png',
+			classT : 'bbtn attendance_bbtn',
+			svg_src : '_attendance_svg',
 			text : '上座率'
 		},
 			{
-				classT : 'bbtn message_bbtn grayscale',
-				img_src : '../static/images/u2464.png',
+				classT : 'bbtn message_bbtn',
+				svg_src : '_message_svg',
 				text : '留言板'
 			},
 			{
-				classT : 'bbtn download_bbtn grayscale',
-				img_src : '../static/images/u2524.png',
+				classT : 'bbtn download_bbtn',
+				svg_src : '_download_svg',
 				text : '下游戏'
 			},
 			{
-				classT : 'bbtn notice_bbtn grayscale',
-				img_src : '../static/images/u2591.png',
+				classT : 'bbtn notice_bbtn',
+				svg_src : '_notice_svg',
 				text : '看通知'
 			}
 		]
@@ -100,11 +80,23 @@ define(function(require, exports, module) {
 		var html = '';
 		for (var i in menus) {
 			var m = menus[i];
-			html += '<div><a href="javascript:void(0);" class="' + m.classT + '" >';
-			html += '<img src="' + m.img_src + '" /><p>' + m.text + '</p></a></div>';
+			html += '<div><a href="javascript:void(0);" class="' + m.classT + '" ><div class=" icon'+ m.svg_src +'">';
+			html += '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#'+ m.svg_src +'"></use></svg>';
+			html += '</div><p>' + m.text + '</p></a></div>';
+			
+			
 		}
 
 		$('div.menus').append(html);
+	}
+	
+	function initBtn(name) {
+		$('.icon_'+ _activate +'_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_' + _activate + '_svg"></use></svg>');	
+		loadURL('../apps/'+ name +'.html');
+		$('div.menus').show();
+		$('div p').css('color', '#82858B');
+		$('div a.' + name + '_bbtn p').css('color', '#3eca00');
+		_activate = name;
 	}
 
 	function loadURL(a) {
