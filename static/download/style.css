@@ -1,26 +1,42 @@
 .margin-t-4 {
-  margin-top: 4rem;
+	margin-top: 4rem;
 }
+
+.search_name {
+	width: 100% !important;
+}
+
 .search_games_content {
-	margin-top: 20px;
+	margin-top: 12px;
 	overflow-y: auto;
 	border-radius: 5px;
-	height: 250px; 
+	max-height: 250px;
 	display: none;
 }
+
+.search_btn {
+	margin-left: -16px;
+}
+
 .search_games {
-  width: 95%;
-  background-color: #FFFFFF;
-  margin: 0 auto;
-  border-radius: 5px;
+	width: 95%;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+	border-radius: 5px;
 }
 
 .top_games {
-  width: 95%;
-  background-color: #FFFFFF;
-  border-radius: 5px;
+	width: 95%;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
 }
 
 td.text-center a {
-  color: #4E90FF;
+	color: #4E90FF;
 }

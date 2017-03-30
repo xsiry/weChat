@@ -71,7 +71,7 @@ define(function(require, exports, module) {
 		        	var row = '';
 		            $.each(games, function(index, obj) {
 		              row += "<tr><td class='text-left'>" + obj.gamename;
-		              row += "</td><td class='text-center'><a class='download_game_btn' data-gameid="+ obj.gameid +">下载</a>";
+		              row += "</td><td class='text-center'><button class='btn btn-info btn-xs download_game_btn' data-gameid="+ obj.gameid +">下载</button>";
 		              row += "</td></tr>";
 		            })
 		            $('table caption span').text(games.length);
@@ -99,11 +99,14 @@ define(function(require, exports, module) {
 	      dataType: 'json',
 	      success: function(data) {
 	        if (data) { 
-	        	$('a[data-gameid='+ gameid +']').text('下载成功');
-	        	$('a[data-gameid='+ gameid +']').css('color', '#66e46b');
+	        	$('button[data-gameid='+ gameid +']').text('下载成功');
+	        	$('button[data-gameid='+ gameid +']').removeClass('btn-info');
+	        	$('button[data-gameid='+ gameid +']').addClass('btn-success');
+	        	$('button[data-gameid='+ gameid +']').prop('disabled', 'disabled');
 	        }else {
-	        	$('a[data-gameid='+ gameid +']').text("下载失败");
-	        	$('a[data-gameid='+ gameid +']').css('color', '#e85a4f');
+	        	$('button[data-gameid='+ gameid +']').text("下载失败");
+	        	$('button[data-gameid='+ gameid +']').removeClass('btn-info');
+	        	$('button[data-gameid='+ gameid +']').addClass('btn-danger');
 	        }
 	      },
 	      error: function(e) {
