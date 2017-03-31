@@ -108,7 +108,7 @@ define(function(require, exports, module) {
 			"cache" : !0,
 			"beforeSend" : function() {
 				b.removeData().html(""),
-				b.html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> 加载中...</h1>'),
+				b.html('<div class="dropload-load"><span class="loading"></span>加载中...</div>'),
 				b[0] == $("#content")[0] && ($("body").find("> *").filter(":not(" + ignore_key_elms + ")").empty().remove(),
 				drawBreadCrumb(),
 				$("html").animate({

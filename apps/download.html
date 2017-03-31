@@ -2,30 +2,6 @@
 <div style="overflow-x:hidden;overflow-y:auto;display:block;hight:100%;">
 <div class="row">
   <div class="col-xs-12">
-    <div class="search-input" style="margin-top:12px;">
-      <div class="col-xs-9">
-      <input class="form-control pull-left search_name" type="text" style="margin-top: -2px;" />
-      </div>
-      <div class="col-xs-3">
-      <a href="javascript:void(0)" class="btn btn-success btn-sm pull-left search_btn">查询游戏</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12 search_games_content">
-    <div class="search_games">
-      <table class="table">
-        <caption>共找到<span>0</span>个游戏:</caption>
-        <tbody>
-          <tr style="display:none;"></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
     <div class="top_games center-block" style="margin-top:12px;">
       <table class="table">
         <caption class="opacity(50%)">本网吧游戏排行前十:</caption>
@@ -42,6 +18,31 @@
     </div>
   </div>
 </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="search-input" style="margin-top:12px;">
+      <div class="col-xs-9">
+      <input class="form-control pull-left search_name" type="text" style="margin-top: -2px;" />
+      </div>
+      <div class="col-xs-3">
+      <a href="javascript:void(0)" class="btn btn-success btn-sm pull-left search_btn">查询游戏</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 search_games_content">
+    <div class="search_games">
+      <input type="hidden" name="pageNo" class="page_no" value="1" /> 
+      <table class="table">
+        <caption>共找到<span>0</span>个游戏:</caption>
+        <tbody>
+          <tr style="display:none;"></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {

@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	$.root_ = $('body');
-	var mData,
+	var list, loading,
 		auditMessage;
 	module.exports = {
 		init : function() {
@@ -59,52 +59,104 @@ define(function(require, exports, module) {
 				} else {
 					setStatus('DELETE');
 				}
-				ajaxData();
+				query(true);
 			})
 		},
 		_loadContent : function() {
-			ajaxData();
+			zeptoInitBind();
+			query(true);
 			setStatus('GET');
 		}
 	}
+	
+	/* 初始化zepoto插件，监听滚动事件 */
+	function zeptoInitBind() {
+		loading = false;
+		Zepto(function($) {
+			$(window).scroll(function() {
+				if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && loading) {
+					loading = false;
+					$(".page_no").val(parseInt($(".page_no").val()) + 1);
+					query(false);
+				}
+			});
+		})
+	}
 
-	function ajaxData() {
+	/* 滚动满足条件，通过ajax 分页查询请求数据 */ 
+	function query(type) {
 		$.ajax({
-			type : 'GET',
-			contentType : 'application/json',
 			url : 'getMsgs.json',
 			dataType : 'json',
-			success : function(data) {
-				if (data.success) {
-					mData = data.list;
-					auditMessage = data.auditMessage;
-					$('div.name-title span').text(data.netbarName);
-					loadMessages();
-				}
+			contentType : 'application/json',
+			data : {
+				pageNo : $(".page_no").val()
 			},
-			error : function(e) {
-				console.log(e);
+			dataType : 'json',
+			cache : false,
+			success : function(data) {
+				list = data.list;
+				$('div.name-title span').text(data.netbarName);
+				loadProcessing(type);
+			},
+			error : function() {
+				loading = true;
+				$(".page_no").val(parseInt($(".page_no").val()) - 1);
+				console.log("查询数据出错啦，请刷新再试");
 			}
 		});
 	}
 
-	function loadMessages() {
-		var html = '';
-		$('div.msg_content').empty();
-		$.each(mData, function(index, obj) {
-			var unixTimestamp = new Date(obj.createTime);
-			commonTime = toLocaleString(unixTimestamp);
-			html += '<div class="content-block content-block-m content_block_msg_' + obj.msgid + '">';
-			html += '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3><p>' + obj.content + '</p>';
-			html += '<div class="ad-Reply ad_reply_' + obj.msgid + '" style="' + ((obj.adminReply == null || obj.adminReply == '') ? 'display:none;' : '') + '"><span>管理员回复：</span><span class="admin_msg_' + obj.msgid + '">' + obj.adminReply + '</span></div>';
-			html += '<div class="content-bottom"><span>' + commonTime + '</span>';
-			html += '<span class="pull-right"><button class="btn btn-danger btn-xs del_msg_btn" data-msgid=' + obj.msgid + ' >删除</button></span>';
-			html += '<span class="pull-right"><button class="btn btn-info btn-xs reply_btn" data-msgid=' + obj.msgid + ' >回复</button></span>';
-			html += (auditMessage == false) ? '' : '<span class="pull-right"><button class="btn btn-info btn-xs status_btn status_btn_' + obj.msgid + '" data-msgid=' + obj.msgid + ' ' + ((obj.isShow == 0) ? '' : 'disabled') + '>' + ((obj.isShow == 0) ? '审核' : '已审核') + '</button></span>';
-			html += '</div></div>';
-		})
+	/* 对ajax的数据进行处理，并显示到对应标签中 */
+	function loadProcessing(type) {
+		loading = true;
+		if (list == null) {
+			$(".page_no").val(parseInt($(".page_no").val()) - 1);
+		} else {
+			var content = "";
+			for (var i = 0; i < list.length; i++) {
+				var obj = list[i];
+				content = content
+					+ '<div class="content-block content-block-m content_block_msg_' + obj.msgid + '">'
+					+ '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3><p>' + obj.content + '</p>'
+					+ '<div class="ad-Reply ad_reply_' + obj.msgid + '" style="' + ((obj.adminReply == null || obj.adminReply == '') ? 'display:none;' : '') + '"><span class="ad_name">管理员回复：</span><span class="admin_msg_' + obj.msgid + '">' + obj.adminReply + '</span></div>'
+					+ '<div class="content-bottom"><span>' + toLocaleString(obj.createTime) + '</span>'
+					+ '<span class="pull-right"><button class="btn btn-danger btn-xs del_msg_btn" data-msgid=' + obj.msgid + ' >删除</button></span>'
+					+ '<span class="pull-right"><button class="btn btn-info btn-xs reply_btn" data-msgid=' + obj.msgid + ' >回复</button></span>'
+					+ ((auditMessage == false) ? '' : '<span class="pull-right"><button class="btn btn-info btn-xs status_btn status_btn_' + obj.msgid + '" data-msgid=' + obj.msgid + ' ' + ((obj.isShow == 0) ? '' : 'disabled') + '>' + ((obj.isShow == 0) ? '审核' : '已审核') + '</button></span>')
+					+ '</div></div>';
+			}
+			if (type) {
+				$("div.msg_content").html(content);
+			} else {
+				if (list.length == 0) {
+					$(".page_no").val(parseInt($(".page_no").val()) - 1);
+					return "";
+				}
+				$("div.msg_content").append(content);
+			}
+		}
+	}
 
-		$('div.msg_content').append(html);
+	/* 时间处理函数 参数 毫秒 */
+	function toLocaleString(ms) {
+		var dateTime = new Date(ms)
+		function p(s) {
+			return s < 10 ? '0' + s : s;
+		}
+		//获取当前年
+		var year = dateTime.getFullYear();
+		//获取当前月
+		var month = dateTime.getMonth() + 1;
+		//获取当前日
+		var date = dateTime.getDate();
+
+		var h = dateTime.getHours(); //获取当前小时数(0-23)
+		var m = dateTime.getMinutes(); //获取当前分钟数(0-59)
+		var s = dateTime.getSeconds();
+
+		var now = [ year, p(month), p(date) ].join('-') + " " + [ p(h), p(m), p(s) ].join(':');
+		return now;
 	}
 
 	function delMsg(msgid) {
@@ -187,24 +239,4 @@ define(function(require, exports, module) {
 			}
 		});
 	}
-
-	function toLocaleString(myDate) {
-		function p(s) {
-			return s < 10 ? '0' + s : s;
-		}
-		//获取当前年
-		var year = myDate.getFullYear();
-		//获取当前月
-		var month = myDate.getMonth() + 1;
-		//获取当前日
-		var date = myDate.getDate();
-
-		var h = myDate.getHours(); //获取当前小时数(0-23)
-		var m = myDate.getMinutes(); //获取当前分钟数(0-59)
-		var s = myDate.getSeconds();
-
-		var now = [ year, p(month), p(date) ].join('-') + " " + [ p(h), p(m), p(s) ].join(':');
-		return now;
-	}
-	;
 })
