@@ -81,3 +81,7 @@ a:focus {
 	-webkit-animation: rotate 0.75s linear infinite;
 	animation: rotate 0.75s linear infinite;
 }
+
+.row_col_t {
+	background: ghostwhite;
+}

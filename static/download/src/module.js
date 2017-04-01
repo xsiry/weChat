@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 	$.root_ = $('body');
-	var mData, search_load;
+	var mData, name, search_load, tabLoadEnd;
 	module.exports = {
 		init : function() {
 			this._bindUI();
@@ -8,7 +8,18 @@ define(function(require, exports, module) {
 		},
 		_bindUI : function() {
 			$.root_.on('click', '.search_btn', function() {
-				if (search_load != null) search_load.resetload();
+				name = $('.search_name').val();
+				if (name == '' || $('.search_btn').attr('disabled') == 'disabled') return;
+				tabLoadEnd = false;
+				$('.search_btn').attr('disabled', 'disabled');
+				if (search_load != null) {
+					$(".page_no").val(1);
+					$('.search_games section').empty();
+					search_load.unlock();
+					search_load.noData(false);
+					search_load.resetload();
+					return;
+				};
 				load();
 			})
 			$.root_.on('click', '.download_game_btn', function(actionobj) {
@@ -56,10 +67,10 @@ define(function(require, exports, module) {
 	}
 
 	function loadTopGames() {
-		$('div.top_games').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center">热门网游排行榜</div></div>');
+		$('div.top_games').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center row_col_t">热门网游排行榜</div></div>');
 		$.each(mData, function(index, obj) {
 			var row = '<div class="row row_col top_p_right">'
-			+ '<div class="col-xs-3 col-sm-3 col-md-3 text-center">'+ ((index <= 2) ? '<i><svg class="svg_icon" viewBox="0 -140 1024 1100"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#top_hot_svg"></use></svg></i>' : (index+1)) +'</div>'
+					+ '<div class="col-xs-3 col-sm-3 col-md-3 text-center">'+ ((index <= 2) ? '<i><svg class="svg_icon" viewBox="0 -140 1024 1100"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#top_hot_svg"></use></svg></i>' : (index+1)) +'</div>'
 					+ '<div class="col-xs-9 col-sm-9 col-md-9 text-right">'+ obj.gamename +'</div>'
 					+ '</div>';
 
@@ -68,12 +79,7 @@ define(function(require, exports, module) {
 	}
 
 	function load() {
-		$('search_games').removeData().html('section class="search_games_panel" style="display:block"></section>');
-		var name = $('.search_name').val();
-		var tabLoadEnd = false;
-		var tabLenght = 0;
 		search_load = $('.search_games').dropload({
-			// scrollArea: $('.search_games_content'),
 			domDown: {
 				domClass: 'dropload-down',
 				domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
@@ -93,6 +99,7 @@ define(function(require, exports, module) {
 					cache: false,
 					success: function(data) {
 						var list = data.list;
+						console.log(list);
 						if (list == null) {
 							$(".page_no").val(parseInt($(".page_no").val()) - 1);
 						};
@@ -113,20 +120,22 @@ define(function(require, exports, module) {
 								var obj = list[i];
 								result
 									+= ''
-									+ '<div class="row row_col search_p_left">'
+									+ '<div class="row row_col search_p_left x_act">'
 									+ '<div class="col-xs-8 col-sm-8 col-md-8 text-left">'+ obj.gamename +'</div>'
 									+ '<div class="col-xs-4 col-sm-4 col-md-4 text-center"><button class="btn btn-info btn-xs download_game_btn" data-gameid=' + obj.gameid + '>下载</button></div>'
 									+ '</div>';
 							}
 							$('.search_games_panel').append(result);
-							tabLenght ++;
+							$('.search_btn').removeAttr('disabled');
 							me.resetload();
 						}, 300);
 						$(".page_no").val(parseInt($(".page_no").val()) + 1);
+						
 					},
 					error: function() {
 						loading = true;
 						$(".page_no").val(parseInt($(".page_no").val()) - 1);
+						$('.search_btn').removeAttr('disabled');
 						console.log("查询数据出错啦，请刷新再试");
 					}
 				});

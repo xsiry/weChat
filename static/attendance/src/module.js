@@ -19,16 +19,15 @@ define(function(require, exports, module) {
   }
 
   function loadAttendanceList() {
-    $('div.recent_div').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center">最近七天网吧上机情况</div></div>');
+    $('div.recent_div').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center row_col_t">最近七天网吧上机情况</div></div>');
     $.each(mData.otlist, function(index, obj) {
+      if (obj.tempDate == null) return;
       var row = ''
       + '<div class="row row_col text-center">'
       + '<div class="col-xs-6 col-sm-6 col-md-6">' + dateFactory(obj.tempDate) + '</div>'
       + '<div class="col-xs-3 col-sm-3 col-md-3 c-4">' + obj.OnlineT + '</div>'
       + '<div class="col-xs-3 col-sm-3 col-md-3 c-4">' + (obj.OnlineT / mData.netbarTCount * 100).toFixed(0) + '%' + '</div>'
       + '</div>';
-      console.log(row)
-        // != "") ? obj.tempDate.split(' ')[0].replace('/','-').replace('/','-') : ""
       $('div.recent_div').append(row);
     })
   }
