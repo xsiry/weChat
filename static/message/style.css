@@ -9,7 +9,7 @@
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	background: rgba(17, 17, 17, 0.90);
+	background: rgba(17, 17, 17, 0.8);
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	padding: 5px;
@@ -43,8 +43,8 @@ pre {
 	background: #fff;
 	border: none;
 	border-radius: 4px;
-	max-height: 112px;
-	min-height: 46px;
+	max-height: 132px;
+	min-height: 66px;
 	padding-left: 10px;
 	padding-right: 10px;
 	overflow-y: auto;
@@ -80,7 +80,7 @@ pre {
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	margin-bottom: 63px;
+	margin-bottom: 60px;
 	margin-right: 10px;
 }
 
@@ -88,20 +88,20 @@ pre {
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	margin-bottom: 102px;
+	margin-bottom: 99px;
 	margin-right: 10px;
 }
 
 .msg_setting {
-	background-color: deepskyblue;
 	position: fixed;
 	right: 0;
+	z-index: 5;
 	margin: 10px 100px;
 }
 
 .tools_div {
 	transition: transform 0.5s;
-    transform: translate(159px,0px);
+	transform: translate(159px,0px);
 	position: fixed;
 	right: 0;
 	top: 0;

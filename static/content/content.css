@@ -1,8 +1,11 @@
 @CHARSET "UTF-8";
-
-html, body {
+html,
+body {
 	margin: 0px;
 	background-color: #f0eff5;
+	font-family: "MicrosoftYaHei";
+	text-align: justify;
+	text-justify: inter-ideograph;
 }
 
 .content {
@@ -13,8 +16,8 @@ html, body {
 
 .grayscale {
 	/**  格式，filer: grayscale(效果范围)
-     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
-     */
+		 *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+		 */
 	-webkit-filter: grayscale(90%) opacity(50%);
 	-o-filter: grayscale(90%) opacity(50%);
 	-moz-filter: grayscale(90%) opacity(50%);
@@ -22,7 +25,9 @@ html, body {
 	filter: grayscale(90%) opacity(50%);
 }
 
-.bottom-fxied a, a:hover, a:focus {
+.bottom-fxied a,
+a:hover,
+a:focus {
 	text-decoration: none;
 }
 
@@ -45,21 +50,34 @@ html, body {
 	pointer-events: none;
 }
 
-/* 加载动画 */
-.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
+.icon_lg {
+	z-index: 2px;
+	display: block;
+	margin: 0 auto 3px;
+	overflow: hidden;
 }
-.dropload-load .loading{
-    display: inline-block;
-    height: 15px;
-    width: 15px;
-    border-radius: 100%;
-    margin: 6px;
-    border: 2px solid #666;
-    border-bottom-color: transparent;
-    vertical-align: middle;
-    -webkit-animation: rotate 0.75s linear infinite;
-    animation: rotate 0.75s linear infinite;
+
+
+/* 加载动画 */
+
+.dropload-refresh,
+.dropload-update,
+.dropload-load,
+.dropload-noData {
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.dropload-load .loading {
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	border-radius: 100%;
+	margin: 6px;
+	border: 2px solid #666;
+	border-bottom-color: transparent;
+	vertical-align: middle;
+	-webkit-animation: rotate 0.75s linear infinite;
+	animation: rotate 0.75s linear infinite;
 }

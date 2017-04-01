@@ -22,22 +22,22 @@ define(function(require, exports, module) {
 			$.root_.on('click', '.attendance_bbtn', function(e) {
 				var name = 'attendance';
 				initBtn(name);
-				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
+				$('.icon_' + name + '_svg').empty().append('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg></i>');
 			})
 			$.root_.on("click", '.message_bbtn', function(e) {
 				var name = 'message';
 				initBtn(name);
-				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
+				$('.icon_' + name + '_svg').empty().append('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg></i>');
 			})
 			$.root_.on("click", '.download_bbtn', function(e) {
 				var name = 'download';
 				initBtn(name);
-				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
+				$('.icon_' + name + '_svg').empty().append('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg></i>');
 			})
 			$.root_.on("click", '.notice_bbtn', function(e) {
 				var name = 'notice';
 				initBtn(name);
-				$('.icon_' + name + '_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg>');	
+				$('.icon_' + name + '_svg').empty().append('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#' + name + '_svg"></use></svg></i>');
 			})
 			$.root_.on("click", '.afresh_login', function(e) {
 				loginOut();
@@ -81,17 +81,17 @@ define(function(require, exports, module) {
 		for (var i in menus) {
 			var m = menus[i];
 			html += '<div><a href="javascript:void(0);" class="' + m.classT + '" ><div class=" icon'+ m.svg_src +'">';
-			html += '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#'+ m.svg_src +'"></use></svg>';
+			html += '<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#'+ m.svg_src +'"></use></svg></i>';
 			html += '</div><p>' + m.text + '</p></a></div>';
-			
-			
+
+
 		}
 
 		$('div.menus').append(html);
 	}
-	
+
 	function initBtn(name) {
-		$('.icon_'+ _activate +'_svg').empty().append('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_' + _activate + '_svg"></use></svg>');	
+		$('.icon_'+ _activate +'_svg').empty().append('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_' + _activate + '_svg"></use></svg></i>');
 		loadURL('../apps/'+ name +'.html');
 		$('div.menus').show();
 		$('div p').css('color', '#82858B');

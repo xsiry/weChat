@@ -17,7 +17,7 @@
 					<div class="arrow-right arrow-box" style="display:none;">
 						<a class="right_btn" href="javascript:void(0);">
 						<b class="right">
-							<i class="right-arrow1"></i> 
+							<i class="right-arrow1"></i>
 							<i class="right-arrow2"></i>
 						</b>
 						</a>
@@ -25,7 +25,7 @@
 					&nbsp;&nbsp;&nbsp;留言审核模式
 				</div>
 				<div class="weui-cell__ft">
-					<label for="switchP" class="weui-switch-cp"> 
+					<label for="switchP" class="weui-switch-cp">
 						<input id="switchP" class="weui-switch-cp__input msg_checkout" type="checkbox">
 						<div class="weui-switch-cp__box"></div>
 					</label>
@@ -34,8 +34,11 @@
 		</div>
 	</div>
 </div>
-<div class="msg_content"></div>
-<input type="hidden" name="pageNo" class="page_no" value="1" /> 
+<article class="msg_content">
+  <section class="msg_content_panel" style="display:block">
+  </section>
+</article>
+<input type="hidden" name="pageNo" class="page_no" value="1" />
 <div class="reply_content">
 	<div class="reply_title">
 		回复：<span class="reply_number_msg"></span> 号机玩家 <span class="msgid_msg"
@@ -50,7 +53,7 @@
 		<button type="button" class="btn btn-success reply_commit_btn">回复</button>
 	</div>
 </div>
-<input type="hidden" name="pageNo" id="pageNo" value="1" />
+<script type="text/javascript" src="../sea-modules/dropload/dropload.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		seajs.use('../static/message/src/main');

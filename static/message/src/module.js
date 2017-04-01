@@ -1,7 +1,6 @@
 define(function(require, exports, module) {
 	$.root_ = $('body');
-	var list, loading,
-		auditMessage;
+	var auditMessage = false, dropLoad;
 	module.exports = {
 		init : function() {
 			this._bindUI();
@@ -16,7 +15,8 @@ define(function(require, exports, module) {
 				var admin_msg = $('.admin_msg_' + msgid).text();
 				$('.reply_number_msg').text(title);
 				$('span.msgid_msg').text(msgid);
-				$('pre.flex').text(admin_msg);
+				console.log(admin_msg);
+				$('pre.flex').text((admin_msg == "null" ? '': admin_msg));
 				actionobj.preventDefault();
 				rowobj = null;
 			})
@@ -59,83 +59,80 @@ define(function(require, exports, module) {
 				} else {
 					setStatus('DELETE');
 				}
-				query(true);
+
 			})
 		},
 		_loadContent : function() {
-			zeptoInitBind();
-			query(true);
-			setStatus('GET');
+			setStatus("GET");
+			load();
 		}
 	}
-	
-	/* 初始化zepoto插件，监听滚动事件 */
-	function zeptoInitBind() {
-		loading = false;
-		Zepto(function($) {
-			$(window).scroll(function() {
-				if (($(window).scrollTop() + $(window).height() > $(document).height() - 10) && loading) {
-					loading = false;
-					$(".page_no").val(parseInt($(".page_no").val()) + 1);
-					query(false);
-				}
-			});
-		})
-	}
 
-	/* 滚动满足条件，通过ajax 分页查询请求数据 */ 
-	function query(type) {
-		$.ajax({
-			url : 'getMsgs.json',
-			dataType : 'json',
-			contentType : 'application/json',
-			data : {
-				pageNo : $(".page_no").val()
+	function load() {
+		var tabLoadEnd = false;
+		var tabLenght = 0;
+		dropLoad = $('.msg_content').dropload({
+			scrollArea: window,
+			domDown: {
+				domClass: 'dropload-down',
+				domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
+				domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+				domNoData: '<div class="dropload-noData">已无数据，点此返回</div>'
 			},
-			dataType : 'json',
-			cache : false,
-			success : function(data) {
-				list = data.list;
-				$('div.name-title span').text(data.netbarName);
-				loadProcessing(type);
-			},
-			error : function() {
-				loading = true;
-				$(".page_no").val(parseInt($(".page_no").val()) - 1);
-				console.log("查询数据出错啦，请刷新再试");
+			loadDownFn: function(me) {
+				$.ajax({
+					url: 'getMsgs.json',
+					dataType: 'json',
+					contentType: 'application/json',
+					data: {
+						pageNo: $(".page_no").val()
+					},
+					dataType: 'json',
+					cache: false,
+					success: function(data) {
+						var list = data.list;
+						if (list == null) {
+							$(".page_no").val(parseInt($(".page_no").val()) - 1);
+						};
+						if (list.length == 0) {
+							tabLoadEnd = true;
+						}
+						setTimeout(function() {
+							if (tabLoadEnd) {
+								me.resetload();
+								me.lock();
+								me.noData();
+								me.resetload();
+								return;
+							}
+							var result = '';
+							for (var i = 0; i < list.length; i++) {
+								var obj = list[i];
+								result
+									+= ''
+									+ '<div class="x_act content-block content-block-m content_block_msg_' + obj.msgid + '">'
+									+ '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3><p>' + obj.content + '</p>'
+									+ '<div class="ad-Reply ad_reply_' + obj.msgid + '" style="' + ((obj.adminReply == null || obj.adminReply == '') ? 'display:none;' : '') + '"><span class="ad_name">管理员回复：</span><span class="admin_msg_' + obj.msgid + '">' + obj.adminReply + '</span></div>'
+									+ '<div class="content-bottom"><span>' + toLocaleString(obj.createTime) + '</span>'
+									+ '<span class="pull-right" style="margin-left: 10px;"><a href="javascript:void(0);" class="del_msg_btn" data-msgid=' + obj.msgid + ' ><i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#del_svg"></use></svg></i></a></span>'
+									+ '<span class="pull-right" style="margin-left: 10px;"><a href="javascript:void(0);" class="reply_btn" data-msgid=' + obj.msgid + ' ><i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#reply_svg"></use></svg></i></a></span>'
+									+ '<span class="pull-right audit_btn" style="' + ((auditMessage == false) ? 'display: none;' : '') + '"><a href="javascript:void(0);" class="status_btn status_btn_' + obj.msgid + '" data-msgid=' + obj.msgid + ' ' + ((obj.isShow == 0) ? '' : 'disabled="disabled"') + '>' + ((obj.isShow == 0) ? '<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#audit_svg"></use></svg></i>' : '<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#approved_svg"></use></svg></i>') + '</a></span>'
+									+ '</div></div>';
+							}
+							$('.msg_content_panel').append(result);
+							tabLenght ++;
+							me.resetload();
+						}, 200);
+						$(".page_no").val(parseInt($(".page_no").val()) + 1);
+					},
+					error: function() {
+						loading = true;
+						$(".page_no").val(parseInt($(".page_no").val()) - 1);
+						console.log("查询数据出错啦，请刷新再试");
+					}
+				});
 			}
 		});
-	}
-
-	/* 对ajax的数据进行处理，并显示到对应标签中 */
-	function loadProcessing(type) {
-		loading = true;
-		if (list == null) {
-			$(".page_no").val(parseInt($(".page_no").val()) - 1);
-		} else {
-			var content = "";
-			for (var i = 0; i < list.length; i++) {
-				var obj = list[i];
-				content = content
-					+ '<div class="content-block content-block-m content_block_msg_' + obj.msgid + '">'
-					+ '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3><p>' + obj.content + '</p>'
-					+ '<div class="ad-Reply ad_reply_' + obj.msgid + '" style="' + ((obj.adminReply == null || obj.adminReply == '') ? 'display:none;' : '') + '"><span class="ad_name">管理员回复：</span><span class="admin_msg_' + obj.msgid + '">' + obj.adminReply + '</span></div>'
-					+ '<div class="content-bottom"><span>' + toLocaleString(obj.createTime) + '</span>'
-					+ '<span class="pull-right"><button class="btn btn-danger btn-xs del_msg_btn" data-msgid=' + obj.msgid + ' >删除</button></span>'
-					+ '<span class="pull-right"><button class="btn btn-info btn-xs reply_btn" data-msgid=' + obj.msgid + ' >回复</button></span>'
-					+ ((auditMessage == false) ? '' : '<span class="pull-right"><button class="btn btn-info btn-xs status_btn status_btn_' + obj.msgid + '" data-msgid=' + obj.msgid + ' ' + ((obj.isShow == 0) ? '' : 'disabled') + '>' + ((obj.isShow == 0) ? '审核' : '已审核') + '</button></span>')
-					+ '</div></div>';
-			}
-			if (type) {
-				$("div.msg_content").html(content);
-			} else {
-				if (list.length == 0) {
-					$(".page_no").val(parseInt($(".page_no").val()) - 1);
-					return "";
-				}
-				$("div.msg_content").append(content);
-			}
-		}
 	}
 
 	/* 时间处理函数 参数 毫秒 */
@@ -206,6 +203,7 @@ define(function(require, exports, module) {
 	}
 
 	function statusMsg(msgid) {
+		if ($('.status_btn_' + msgid).attr('disabled') == "disabled") return;
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
@@ -213,8 +211,8 @@ define(function(require, exports, module) {
 			dataType : 'json',
 			success : function(data) {
 				if (data) {
-					$('.status_btn_' + msgid).text('已审核');
-					$('.status_btn_' + msgid).prop('disabled', 'disabled')
+					$('.status_btn_' + msgid).html('<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#approved_svg"></use></svg></i>');
+					$('.status_btn_' + msgid).attr('disabled', 'disabled')
 				}
 			},
 			error : function(e) {
@@ -222,7 +220,7 @@ define(function(require, exports, module) {
 			}
 		});
 	}
-	
+
 	function setStatus(type) {
 		$.ajax({
 			type : type,
@@ -231,7 +229,12 @@ define(function(require, exports, module) {
 			dataType : 'json',
 			success : function(data) {
 				if (data && type == "GET") {
+					auditMessage = true;
 					$('.msg_checkout').prop("checked", "checked");
+				}else if (data && type == "POST") {
+					$('.audit_btn').show();
+				}else if (data && type == "DELETE") {
+					$('.audit_btn').hide();
 				}
 			},
 			error : function(e) {

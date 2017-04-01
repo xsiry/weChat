@@ -62,10 +62,11 @@
 
 /*特效动画 by xsiry */
 
-.xAct {
-  -webkit-animation-name: topAct, opacityAct;
+.x_act {
+  position: relative;
+  -webkit-animation-name: top_act, opacity_act;
   /*动画名称*/
-  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
   /*动画持续时间*/
   -webkit-animation-iteration-count: 1;
   /*动画次数*/
@@ -76,18 +77,18 @@
 
 /*向上移动特效*/
 
-@-webkit-keyframes topAct {
+@-webkit-keyframes top_act {
   0% {
-    top: 0.8rem
+    top: 5rem;
   }
   100% {
     top: 0rem;
   }
 }
 
-@-moz-keyframes topAct {
+@-moz-keyframes top_act {
   0% {
-    top: 0.8rem
+    top: 5rem;
   }
   100% {
     top: 0rem;
@@ -97,7 +98,7 @@
 
 /*淡入特效*/
 
-@-webkit-keyframes opacityAct {
+@-webkit-keyframes opacity_act {
   0% {
     opacity: 0;
     /*初始状态 透明度为0*/

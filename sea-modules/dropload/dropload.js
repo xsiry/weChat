@@ -47,7 +47,6 @@
             loadUpFn : '',                                                       // 上方function
             loadDownFn : ''                                                      // 下方function
         }, options);
-
         // 如果加载下方，事先在下方插入DOM
         if(me.opts.loadDownFn != ''){
             me.$element.append('<div class="'+me.opts.domDown.domClass+'">'+me.opts.domDown.domRefresh+'</div>');
@@ -299,4 +298,4 @@
             'transition':'all '+num+'ms'
         });
     }
-})(window.Zepto || window.jQuery);
+})(window.jQuery);

@@ -1,42 +1,81 @@
-.margin-t-4 {
-	margin-top: 4rem;
+.search-input {
+	margin-top: 2rem;
 }
 
 .search_name {
 	width: 100% !important;
 }
 
-.search_games_content {
+.search_games {
+	margin: 0 auto;
 	margin-top: 12px;
-	overflow-y: auto;
+	font-size: 16px;
+	width: 95%;
+	overflow-x: hidden;
+	overflow-y: visible;
 	border-radius: 5px;
-	max-height: 300px;
+	height: 350px;
+	background-color: #FFFFFF;
 	display: none;
 }
 
 .search_btn {
-	margin-left: -16px;
-}
-
-.search_games {
-	width: 95%;
-	background-color: #FFFFFF;
-	margin: 0 auto;
-	border-radius: 5px;
+	font-size: 13px;
+	margin-left: -26px;
 }
 
 .top_games {
 	width: 95%;
+	font-size: 16px;
+	height: 135px;
+	overflow: hidden;
+	transition: height 1s;
 	background-color: #FFFFFF;
-	border-radius: 5px;
+	border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 0px;
+.row_col {
+	border-bottom: 0.1rem solid #eee;
+	line-height: 32px;
+	display: block;
 }
 
-td.text-center a {
-	color: #4E90FF;
+.top_detail_btn {
+	width: 95%;
+	font-size: 16px;
+	line-height: 32px;
+	text-align: center;
+	background-color: #FFFFFF;
+	border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  /*以下可解决ios无法点击*/
+	white-space: nowrap;
+  vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+
 }
+
+.top_detail_open {
+	height: 695px;
+}
+
+.top_detail_close {
+	height: 135px;
+}
+
+.top_p_right {
+	padding-right: 30px;
+}
+
+.search_p_left {
+	padding-left: 30px;
+}
+
+
+

@@ -1,8 +1,38 @@
-<div class="notice_content">
+<style type="text/css">
+.icon_lg_text {
+		height: 16px;
+    width: 8rem;
+    display: block;
+    margin: 0 auto 3px;
+    overflow: hidden;
+}
+
+.svg_icon_text {
+	color: #5ac1f8;
+	line-height: 25px;
+}
+
+.msg_details_btn {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+</style>
+
+<div class="notice_detail" sytle="display:none;">
 </div>
-<div class="notice_detail" style="diplay:none;">
-</div>
+<article class="notice_content">
+  <section class="notice_content_panel" style="display:block">
+  </section>
+</article>
 <input type="hidden" name="pageNo" class="page_no" value="1" />
+<script type="text/javascript" src="../sea-modules/dropload/dropload.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
   seajs.use('../static/notice/src/main');

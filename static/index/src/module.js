@@ -55,11 +55,11 @@ define(function(require, exports, module) {
     $.ajax({
 	      type: 'GET',
 	      contentType: 'application/json',
-	      url: 'getMsgs.json',
+	      url: 'showStatusTotal.json',
 	      dataType: 'json',
 	      success: function(data) {
 	        if (data.success) {
-	        	count = data.list.length;
+	        	count = data.total;
 	        }
 	        if (count > 0) {
 	            $('.message_count').addClass('bg-0');
@@ -77,11 +77,11 @@ define(function(require, exports, module) {
     $.ajax({
 	      type: 'GET',
 	      contentType: 'application/json',
-	      url: 'infoDelivery.json',
+	      url: 'getNoReadTotal.json',
 	      dataType: 'json',
 	      success: function(data) {
 	        if (data.success) { 
-	        	count = data.list.length;
+	        	count = data.total;
 	        }
 	        if (count > 0) {
 	            $('.notice_count').addClass('bg-f');
