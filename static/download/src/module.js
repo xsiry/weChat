@@ -124,7 +124,7 @@ define(function(require, exports, module) {
 									+ '<div class="row row_col search_p_left x_act">'
 									+ '<div class="col-xs-8 col-sm-8 col-md-8 text-left">'+ obj.gamename +'</div>'
 									+ '<div class="col-xs-4 col-sm-4 col-md-4 text-center"><a class="download_game_btn" data-gameid=' + obj.gameid + '>'
-									+ '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_svg"></use></svg></a></div>'
+									+ '<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_svg"></use></svg></a></div>'
 									+ '</div>';
 							}
 							$('.search_games_panel').append(result);
@@ -157,11 +157,11 @@ define(function(require, exports, module) {
 			success : function(data) {
 				if (data) {
 					$('a[data-gameid=' + gameid + ']').empty;
-					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_success_svg"></use></svg>');
+					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_success_svg"></use></svg>');
 					$('a[data-gameid=' + gameid + ']').prop('disabled', 'disabled');
 				} else {
 					$('a[data-gameid=' + gameid + ']').empty;
-					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_failure_svg"></use></svg>');
+					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_failure_svg"></use></svg>');
 				}
 			},
 			error : function(e) {

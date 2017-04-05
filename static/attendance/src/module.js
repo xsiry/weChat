@@ -12,21 +12,30 @@ define(function(require, exports, module) {
   };
 
   function loadAttendance() {
-    $('.name-title span').text(mData.netbarName);
+    $('.netbar_title').text(mData.netbarName);
     $('.total_machine').text(mData.netbarTCount);
     $('.online_machine').text(88);
-    $('.top_online').text('84%');
+    $('.due_time').text('2018-02-15');
   }
 
   function loadAttendanceList() {
     $('div.recent_div').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center row_col_t">最近七天网吧上机情况</div></div>');
     $.each(mData.otlist, function(index, obj) {
+      var date = '';
       if (obj.tempDate == null) return;
+      if (index == 0) {
+        date = '<svg class="svg_icon" viewBox="0 0 1500 1024" style="width: 50px;height: 28px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#yesterday_svg"></use></svg>';
+      }else if (index == 1) {
+        date = '<svg class="svg_icon" viewBox="0 0 1500 1024" style="width: 50px;height: 28px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#before_yesterday_svg"></use></svg>';
+      }else {
+        date = dateFactory(obj.tempDate);
+      }
+
       var row = ''
       + '<div class="row row_col text-center">'
-      + '<div class="col-xs-4 col-sm-4 col-md-4">' + dateFactory(obj.tempDate) + '</div>'
-      + '<div class="col-xs-4 col-sm-4 col-md-4 c-4">' + obj.OnlineT + '</div>'
-      + '<div class="col-xs-4 col-sm-4 col-md-4 c-4">' + (obj.OnlineT / mData.netbarTCount * 100).toFixed(0) + '%' + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4">' + date + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4">' + obj.OnlineT + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4">' + (obj.OnlineT / mData.netbarTCount * 100).toFixed(0) + '%' + '</div>'
       + '</div>';
       $('div.recent_div').append(row);
     })

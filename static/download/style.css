@@ -36,7 +36,7 @@
 	transition: height 1s;
 	background-color: #FFFFFF;
 	border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+	border-top-left-radius: 5px;
 }
 
 .row_col {
@@ -52,17 +52,16 @@
 	text-align: center;
 	background-color: #FFFFFF;
 	border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  /*以下可解决ios无法点击*/
+	border-bottom-left-radius: 5px;
+	/*以下可解决ios无法点击*/
 	white-space: nowrap;
-  vertical-align: middle;
+	vertical-align: middle;
 	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-
 }
 
 .top_detail_open {
@@ -81,5 +80,27 @@
 	padding-left: 30px;
 }
 
+.download_game_btn {
+	display: inline-block;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
 
-
+input::-webkit-input-placeholder {
+		color: #e4e4e4 !important;
+}
+input:-moz-placeholder {
+		color: #e4e4e4 !important;
+}
+input::-moz-placeholder {
+		color: #e4e4e4 !important;
+}
+input:-ms-input-placeholder {
+		color: #e4e4e4 !important;
+}

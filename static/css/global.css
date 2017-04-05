@@ -511,7 +511,15 @@ body {
 .select-area{background-color: white;position: fixed;bottom: 0;left:0;width: 100%;border-top: 1px solid rgba(228, 228, 228, 1);}
 .select-area>div{text-align: center;float:left;}
 .select-item{display: inline-block;width: 49.9%;border-bottom: 1px solid rgba(228, 228, 228, 1);padding: 3rem 0;position: relative}
-.clue{position: absolute;color: #ffffff;padding: .2rem .6rem .2rem;border-radius: 1rem;top: 20%;left: 55%;margin-left: 2rem;}
+.clue{position: absolute;
+    color: #ffffff;
+    border-radius: 1rem;
+    top: 0;
+    line-height: 10px;
+    font-size: 10px;
+    margin-left: 50px;
+    padding: 2px 3px 2px 3px;
+    margin-top: 4px;}
 .bg-0{background-color: #0BBA05;}
 .bg-f{background-color: #FF0000;}
 .bg-e{background-color: #E4E4E4;}

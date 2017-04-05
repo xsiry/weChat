@@ -142,10 +142,36 @@ define(function(require, exports, module) {
 			},
 			success: function(data) {
 				$('.msg_details_btn_'+ infoid).html('<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#view_detailed_svg"></use></svg>');
+				noticeCount();
 			},
 			error: function(e) {
 				console.log(e);
 			}
 		});
+	}
+
+	function noticeCount() {
+		var count = 0;
+		$.ajax({
+				type: 'GET',
+				contentType: 'application/json',
+				url: 'getNoReadTotal.json',
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						count = data.total;
+					}
+					if (count > 0) {
+						$('.notice_count').show();
+						$('.notice_count').addClass('bg-f');
+						$('.notice_count').text(count);
+					}else {
+						$('.notice_count').hide();
+					}
+				},
+				error: function(e) {
+					console.log(e);
+				}
+			});
 	}
 })

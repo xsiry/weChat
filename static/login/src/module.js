@@ -79,7 +79,7 @@ define(function(require, exports, module) {
         if (data) {
           $('.login_msg').text("登陆成功！");
           saveUserInfo();
-          location.href = "apps/content.html#index";
+          location.href = "apps/content.html#attendance";
         } else {
           $('.login_msg').text("登陆失败！用户名或密码错误！");
         }

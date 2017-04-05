@@ -56,24 +56,28 @@ define(function(require, exports, module) {
 
 	function buildMenu() {
 		var menus = [ {
-			classT : 'bbtn attendance_bbtn',
-			svg_src : '_attendance_svg',
-			text : '上座率'
-		},
+				classT : 'bbtn attendance_bbtn',
+				svg_src : '_attendance_svg',
+				text : '上座率',
+				iconCount: ''
+			},
 			{
 				classT : 'bbtn message_bbtn',
 				svg_src : '_message_svg',
-				text : '留言板'
+				text : '留言板',
+				iconCount: '<div class="message_count clue"></div>'
 			},
 			{
 				classT : 'bbtn download_bbtn',
 				svg_src : '_download_svg',
-				text : '下游戏'
+				text : '下游戏',
+				iconCount: ''
 			},
 			{
 				classT : 'bbtn notice_bbtn',
 				svg_src : '_notice_svg',
-				text : '看通知'
+				text : '看通知',
+				iconCount: '<div class="notice_count clue"></div>'
 			}
 		]
 
@@ -82,12 +86,14 @@ define(function(require, exports, module) {
 			var m = menus[i];
 			html += '<div><a href="javascript:void(0);" class="' + m.classT + '" ><div class=" icon'+ m.svg_src +'">';
 			html += '<i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#'+ m.svg_src +'"></use></svg></i>';
-			html += '</div><p>' + m.text + '</p></a></div>';
+			html += '</div><p>' + m.text + '</p></a>' + m.iconCount + '</div>';
 
 
 		}
 
 		$('div.menus').append(html);
+		messageCount();
+		noticeCount();
 	}
 
 	function initBtn(name) {
@@ -152,5 +158,55 @@ define(function(require, exports, module) {
 				$('.noping_msg').show();
 			}
 		})
+	}
+
+	function messageCount() {
+		var count = 0;
+		$.ajax({
+				type: 'GET',
+				contentType: 'application/json',
+				url: 'showStatusTotal.json',
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						count = data.total;
+					}
+					if (count > 0) {
+						$('.message_count').show();
+						$('.message_count').addClass('bg-0');
+						$('.message_count').text(count);
+					}else{
+						$('.message_count').hide();
+					}
+				},
+				error: function(e) {
+					console.log(e);
+				}
+			});
+	}
+
+	function noticeCount() {
+		var count = 0;
+		$.ajax({
+				type: 'GET',
+				contentType: 'application/json',
+				url: 'getNoReadTotal.json',
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						count = data.total;
+					}
+					if (count > 0) {
+						$('.notice_count').show();
+						$('.notice_count').addClass('bg-f');
+						$('.notice_count').text(count);
+					}else {
+						$('.notice_count').hide();
+					}
+				},
+				error: function(e) {
+					console.log(e);
+				}
+			});
 	}
 })

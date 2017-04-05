@@ -177,7 +177,7 @@ define(function(require, exports, module) {
 		var msgid = $('span.msgid_msg').text();
 		var adminReply = $('pre.flex').text();
 		adminReply = adminReply == '' ? null : adminReply;
-		
+
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
@@ -195,6 +195,7 @@ define(function(require, exports, module) {
 					} else {
 						$('.ad_reply_' + msgid).show();
 					}
+					messageCount();
 					$('.reply_content').hide();
 				}
 			},
@@ -243,5 +244,30 @@ define(function(require, exports, module) {
 				console.log(e);
 			}
 		});
+	}
+
+	function messageCount() {
+		var count = 0;
+		$.ajax({
+				type: 'GET',
+				contentType: 'application/json',
+				url: 'showStatusTotal.json',
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						count = data.total;
+					}
+					if (count > 0) {
+						$('.message_count').show();
+						$('.message_count').addClass('bg-0');
+						$('.message_count').text(count);
+					}else{
+						$('.message_count').hide();
+					}
+				},
+				error: function(e) {
+					console.log(e);
+				}
+			});
 	}
 })
