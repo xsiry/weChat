@@ -85,7 +85,7 @@ define(function(require, exports, module) {
 				domClass: 'dropload-down',
 				domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
 				domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
-				domNoData: '<div class="dropload-noData">已无数据，点此返回</div>'
+				domNoData: '<div class="dropload-noData">已无数据</div>'
 			},
 			loadDownFn: function(me) {
 				$.ajax({
@@ -100,7 +100,6 @@ define(function(require, exports, module) {
 					cache: false,
 					success: function(data) {
 						var list = data.list;
-						console.log(list);
 						if (list == null) {
 							$(".page_no").val(parseInt($(".page_no").val()) - 1);
 						};

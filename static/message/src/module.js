@@ -29,9 +29,6 @@ define(function(require, exports, module) {
 			$.root_.off('click', '.reply_commit_btn').on('click', '.reply_commit_btn', function() {
 				commitMsg();
 			})
-			$.root_.off('click', '.msg_setting_btn').on("click", '.msg_setting_btn', function(e) {
-				console.log("safasfasfsafsa");
-			})
 			$.root_.off('click', '.reply_cancel_btn').on('click', '.reply_cancel_btn', function() {
 				$('.reply_content').hide();
 			})
@@ -76,7 +73,7 @@ define(function(require, exports, module) {
 				domClass: 'dropload-down',
 				domRefresh: '<div class="dropload-refresh">上拉加载更多</div>',
 				domLoad: '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
-				domNoData: '<div class="dropload-noData">已无数据，点此返回</div>'
+				domNoData: '<div class="dropload-noData">已无数据</div>'
 			},
 			loadDownFn: function(me) {
 				$.ajax({
@@ -259,7 +256,7 @@ define(function(require, exports, module) {
 					}
 					if (count > 0) {
 						$('.message_count').show();
-						$('.message_count').addClass('bg-0');
+						$('.message_count').addClass('bg-f');
 						$('.message_count').text(count);
 					}else{
 						$('.message_count').hide();

@@ -173,7 +173,7 @@ define(function(require, exports, module) {
 					}
 					if (count > 0) {
 						$('.message_count').show();
-						$('.message_count').addClass('bg-0');
+						$('.message_count').addClass('bg-f');
 						$('.message_count').text(count);
 					}else{
 						$('.message_count').hide();
