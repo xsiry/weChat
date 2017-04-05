@@ -87,7 +87,7 @@ define(function(require, exports, module) {
       },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           $('.subimt_btn').removeAttr("disabled");
-          $('.login_msg').html("请求对象XMLHttpRequest: " + XMLHttpRequest.responseText + " ,错误类型textStatus: " + textStatus + ",异常对象errorThrown: " + errorThrown);
+          $('.login_msg').html("请求对象XMLHttpRequest: " + XMLHttpRequest.responseText.substring(0, 50) + " ,错误类型textStatus: " + textStatus + ",异常对象errorThrown: " + errorThrown.substring(0, 50));
         }
     });
   }

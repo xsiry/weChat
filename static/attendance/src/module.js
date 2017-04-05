@@ -24,9 +24,9 @@ define(function(require, exports, module) {
       if (obj.tempDate == null) return;
       var row = ''
       + '<div class="row row_col text-center">'
-      + '<div class="col-xs-6 col-sm-6 col-md-6">' + dateFactory(obj.tempDate) + '</div>'
-      + '<div class="col-xs-3 col-sm-3 col-md-3 c-4">' + obj.OnlineT + '</div>'
-      + '<div class="col-xs-3 col-sm-3 col-md-3 c-4">' + (obj.OnlineT / mData.netbarTCount * 100).toFixed(0) + '%' + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4">' + dateFactory(obj.tempDate) + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4 c-4">' + obj.OnlineT + '</div>'
+      + '<div class="col-xs-4 col-sm-4 col-md-4 c-4">' + (obj.OnlineT / mData.netbarTCount * 100).toFixed(0) + '%' + '</div>'
       + '</div>';
       $('div.recent_div').append(row);
     })
@@ -70,7 +70,7 @@ define(function(require, exports, module) {
     var m = d.getMinutes(); //获取当前分钟数(0-59)
     var s = d.getSeconds();
 
-    var now = [p(month), p(date)].join('-') + " " + [p(h), p(m), p(s)].join(':')
+    var now = [p(month), p(date)].join('-');
     return now;
   }
 

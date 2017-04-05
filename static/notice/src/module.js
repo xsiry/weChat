@@ -16,10 +16,11 @@ define(function(require, exports, module) {
 			$.root_.on('click', '.go_back_btn', function(actionobj) {
 				var rowobj = $(this);
 				var infoid = rowobj.data("infoid");
-				$('.notice_detail').hide();
+				$('.detail_panel').hide();
 				$('.content-block_' + infoid).addClass('c-b');
 				$('.msg_details_btn_' + infoid).addClass('c-b');
 				$('.idcontent_' + infoid).addClass('c-b');
+				$('.notice_bbtn').click();
 				$('.notice_content').show();
 				actionobj.preventDefault();
 				rowobj = null;
@@ -74,7 +75,7 @@ define(function(require, exports, module) {
 									+= ''
 									+ '<div class="x_act content-block content-block-m content-block_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">'
 									+ '<h3 class="notice_title' + obj.infoid + '">' + obj.idtitle + '</h3>'
-									+ '<p class="idcontent_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">' + obj.idcontent.substring(0, 100) + ((obj.idcontent.length >= 20) ? '……' : '') + '</p>'
+									+ '<p class="idcontent_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">' + obj.idcontent.substring(0, 50) + ((obj.idcontent.length >= 20) ? '……' : '') + '</p>'
 									+ '<div class="notice_content' + obj.infoid + '" style="display:none;">' + obj.idcontent + '</div>'
 									+ '<div class="content-bottom"><span class="notice_time' + obj.infoid + '">' + toLocaleString(obj.createtime) + '</span>'
 									+ '<span class="pull-right"><a herf="javascript(0);" class="msg_details_btn msg_details_btn_' + obj.infoid + '" data-infoid= ' + obj.infoid + ' ><i class="icon_lg">' + (obj.wxread == 0 ? '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#view_detail_svg"></use></svg>' : '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#view_detailed_svg"></use></svg>') + '</i></a></span>'
@@ -129,7 +130,7 @@ define(function(require, exports, module) {
 		div_text += '</span><span class="pull-right"><a href="javascript:void(0);" class="go_back_btn" ';
 		div_text += 'data-infoid= ' + infoid + ' ><i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#go_back_svg"></use></svg><span class="svg_icon_text">返回</span></i></a></span></div></div>'
 		$('.notice_detail').html(div_text);
-		$('.notice_detail').show();
+		$('.detail_panel').show();
 
 		$.ajax({
 			type: 'GET',

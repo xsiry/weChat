@@ -176,6 +176,8 @@ define(function(require, exports, module) {
 	function commitMsg() {
 		var msgid = $('span.msgid_msg').text();
 		var adminReply = $('pre.flex').text();
+		adminReply = adminReply == '' ? null : adminReply;
+		
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
@@ -188,7 +190,7 @@ define(function(require, exports, module) {
 			success : function(data) {
 				if (data) {
 					$('.admin_msg_' + msgid).text(adminReply);
-					if (adminReply == '' ) {
+					if (adminReply == '' || adminReply == null ) {
 						$('.ad_reply_' + msgid).hide();
 					} else {
 						$('.ad_reply_' + msgid).show();

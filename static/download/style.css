@@ -19,6 +19,10 @@
 	display: none;
 }
 
+.search_games .search_games_panel {
+	width: 95%;
+}
+
 .search_btn {
 	font-size: 13px;
 	margin-left: -26px;
