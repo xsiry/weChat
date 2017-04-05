@@ -7,7 +7,7 @@ define(function(require, exports, module) {
 			this._loadContent();
 		},
 		_bindUI : function() {
-			$.root_.on('click', '.search_btn', function() {
+			$.root_.off('click', '.search_btn').on('click', '.search_btn', function() {
 				name = $('.search_name').val();
 				if (name == '' || $('.search_btn').attr('disabled') == 'disabled') return;
 				tabLoadEnd = false;
@@ -22,7 +22,7 @@ define(function(require, exports, module) {
 				};
 				load();
 			})
-			$.root_.on('click', '.download_game_btn', function(actionobj) {
+			$.root_.off('click', '.download_game_btn').on('click', '.download_game_btn', function(actionobj) {
 				var rowobj = $(this);
 				var gameid = rowobj.data("gameid");
 				if ($('a[data-gameid=' + gameid + ']').prop('disabled') == 'disabled') return;
@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 				actionobj.preventDefault();
 				rowobj = null;
 			})
-			$.root_.on('click', '.top_detail_btn', function() {
+			$.root_.off('click', '.top_detail_btn').on('click', '.top_detail_btn', function() {
 				if ($('.top_detail_btn').text() == '<<展开列表>>') {
 					$('.top_games').removeClass('top_detail_close');
 					$('.top_games').addClass('top_detail_open');
@@ -124,7 +124,7 @@ define(function(require, exports, module) {
 									+ '<div class="row row_col search_p_left x_act">'
 									+ '<div class="col-xs-8 col-sm-8 col-md-8 text-left">'+ obj.gamename +'</div>'
 									+ '<div class="col-xs-4 col-sm-4 col-md-4 text-center"><a class="download_game_btn" data-gameid=' + obj.gameid + '>'
-									+ '<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_svg"></use></svg></a></div>'
+									+ '<svg class="svg_icon" viewBox="0 0 1024 1024" style="margin-top:2px;width:25px;height:25px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_svg"></use></svg></a></div>'
 									+ '</div>';
 							}
 							$('.search_games_panel').append(result);
@@ -157,11 +157,11 @@ define(function(require, exports, module) {
 			success : function(data) {
 				if (data) {
 					$('a[data-gameid=' + gameid + ']').empty;
-					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_success_svg"></use></svg>');
+					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:30px;height:30px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_success_svg"></use></svg>');
 					$('a[data-gameid=' + gameid + ']').prop('disabled', 'disabled');
 				} else {
 					$('a[data-gameid=' + gameid + ']').empty;
-					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:32px;height:32px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_failure_svg"></use></svg>');
+					$('a[data-gameid=' + gameid + ']').html('<svg class="svg_icon" viewBox="0 0 1024 1024" style="width:30px;height:30px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download_game_failure_svg"></use></svg>');
 				}
 			},
 			error : function(e) {

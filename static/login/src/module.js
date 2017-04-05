@@ -7,7 +7,7 @@ define(function(require, exports, module) {
       inputValidator();
     },
     _bindUI: function() {
-      $.root_.on('click', '.subimt_btn', function() {
+      $.root_.off('click', '.subimt_btn').on('click', '.subimt_btn', function() {
         loginSubmit();
       })
     },

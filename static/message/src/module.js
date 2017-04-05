@@ -7,7 +7,7 @@ define(function(require, exports, module) {
 			this._loadContent();
 		},
 		_bindUI : function() {
-			$.root_.on('click', '.reply_btn', function(actionobj) {
+			$.root_.off('click', '.reply_btn').on('click', '.reply_btn', function(actionobj) {
 				var rowobj = $(this);
 				var msgid = rowobj.data("msgid");
 				$('.reply_content').show();
@@ -15,45 +15,44 @@ define(function(require, exports, module) {
 				var admin_msg = $('.admin_msg_' + msgid).text();
 				$('.reply_number_msg').text(title);
 				$('span.msgid_msg').text(msgid);
-				console.log(admin_msg);
 				$('pre.flex').text((admin_msg == "null" ? '': admin_msg));
 				actionobj.preventDefault();
 				rowobj = null;
 			})
-			$.root_.on('click', '.del_msg_btn', function(actionobj) {
+			$.root_.off('click', '.del_msg_btn').on('click', '.del_msg_btn', function(actionobj) {
 				var rowobj = $(this);
 				var msgid = rowobj.data("msgid");
 				delMsg(msgid);
 				actionobj.preventDefault();
 				rowobj = null;
 			})
-			$.root_.on('click', '.reply_commit_btn', function() {
+			$.root_.off('click', '.reply_commit_btn').on('click', '.reply_commit_btn', function() {
 				commitMsg();
 			})
-			$.root_.on("click", '.msg_setting_btn', function(e) {
+			$.root_.off('click', '.msg_setting_btn').on("click", '.msg_setting_btn', function(e) {
 				console.log("safasfasfsafsa");
 			})
-			$.root_.on('click', '.reply_cancel_btn', function() {
+			$.root_.off('click', '.reply_cancel_btn').on('click', '.reply_cancel_btn', function() {
 				$('.reply_content').hide();
 			})
-			$.root_.on('click', '.status_btn', function(actionobj) {
+			$.root_.off('click', '.status_btn').on('click', '.status_btn', function(actionobj) {
 				var rowobj = $(this);
 				var msgid = rowobj.data("msgid");
 				statusMsg(msgid);
 				actionobj.preventDefault();
 				rowobj = null;
 			})
-			$.root_.on('click', '.right_btn', function() {
+			$.root_.off('click', '.right_btn').on('click', '.right_btn', function() {
 				$('div.tools_div').css('transform','translate(159px,0px)');
 				$('div.arrow-right').hide();
 				$('div.arrow-left').show();
 			})
-			$.root_.on('click', '.left_btn', function() {
+			$.root_.off('click', '.left_btn').on('click', '.left_btn', function() {
 				$('div.tools_div').css('transform','translate(0px,0px)');
 				$('div.arrow-left').hide();
 				$('div.arrow-right').show();
 			})
-			$.root_.on('click', '#switchP', function() {
+			$.root_.off('click', '#switchP').on('click', '#switchP', function() {
 				if ($('#switchP').prop("checked")) {
 					setStatus('POST');
 				} else {
@@ -164,7 +163,8 @@ define(function(require, exports, module) {
 			dataType : 'json',
 			success : function(data) {
 				if (data) {
-					$('.content_block_msg_' + msgid).remove()
+					$('.content_block_msg_' + msgid).remove();
+					messageCount();
 				}
 			},
 			error : function(e) {

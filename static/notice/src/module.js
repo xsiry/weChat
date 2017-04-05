@@ -6,21 +6,21 @@ define(function(require, exports, module) {
 			this._loadContent();
 		},
 		_bindUI: function() {
-			$.root_.on('click', '.msg_details_btn', function(actionobj) {
+			$.root_.off('click', '.msg_details_btn').on('click', '.msg_details_btn', function(actionobj) {
 				var rowobj = $(this);
 				var infoid = rowobj.data("infoid");
 				notice_detail(infoid);
 				actionobj.preventDefault();
 				rowobj = null;
 			})
-			$.root_.on('click', '.go_back_btn', function(actionobj) {
+			$.root_.off('click', '.go_back_btn').on('click', '.go_back_btn', function(actionobj) {
 				var rowobj = $(this);
 				var infoid = rowobj.data("infoid");
 				$('.detail_panel').hide();
 				$('.content-block_' + infoid).addClass('c-b');
 				$('.msg_details_btn_' + infoid).addClass('c-b');
 				$('.idcontent_' + infoid).addClass('c-b');
-				$('.notice_bbtn').click();
+				$('body,html').animate({ scrollTop: 0 }, 0);
 				$('.notice_content').show();
 				actionobj.preventDefault();
 				rowobj = null;
@@ -130,6 +130,7 @@ define(function(require, exports, module) {
 		div_text += '</span><span class="pull-right"><a href="javascript:void(0);" class="go_back_btn" ';
 		div_text += 'data-infoid= ' + infoid + ' ><i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#go_back_svg"></use></svg><span class="svg_icon_text">返回</span></i></a></span></div></div>'
 		$('.notice_detail').html(div_text);
+		$('body,html').animate({ scrollTop: 0 }, 0);
 		$('.detail_panel').show();
 
 		$.ajax({

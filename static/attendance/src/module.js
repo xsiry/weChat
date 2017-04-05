@@ -20,6 +20,7 @@ define(function(require, exports, module) {
 
   function loadAttendanceList() {
     $('div.recent_div').append('<div class="row row_col"><div class="col-xs-12 col-sm-12 col-md-12 text-center row_col_t">最近七天网吧上机情况</div></div>');
+    $('div.recent_div').append('<div class="row row_col text-center"><div class="col-xs-4 col-sm-4 col-md-4">日期</div><div class="col-xs-4 col-sm-4 col-md-4">台数</div><div class="col-xs-4 col-sm-4 col-md-4">上座率</div></div>');
     $.each(mData.otlist, function(index, obj) {
       var date = '';
       if (obj.tempDate == null) return;
