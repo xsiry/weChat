@@ -1,3 +1,7 @@
+[genuitec-file-id="wc1-14"],[genuitec-lp-path="/weChat/WebRoot/static/css/global.css"],[genuitec-lp-enabled=true]{
+  /* for codelive */
+}
+
 @charset "utf-8";
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
     margin: 0;
@@ -544,7 +548,7 @@ body {
 .content-block-m>.content-bottom>span.pull-right{color: #4E90FF;}
 .ad-Reply{background-color: #F3F3F3;border:1px solid #e9ebea;padding: 10px 15px;margin: 0 0 .4rem 0;}
 .ad-Reply>span{color: #000000;line-height: 1.6;}
-.ad_name{color: #2196F3 !important;}
+.ad_name{color: #2196F3 !important;float: left;}
 .name-title{z-index: 1 !important;position:fixed;top:0;left: 0;color: #ffffff;background-color: rgba(56, 55, 60, 0.97);width: 100%;height: 42px;line-height:42px;font-size: 18px;padding: 0 .6rem;overflow: hidden;}
 .name-title a{color: #ffffff;border-left: 1px solid #ffffff;padding: 0 1.2rem;font-size: 15px;}
 .name-title a img{vertical-align: middle;margin-top: -.3rem}

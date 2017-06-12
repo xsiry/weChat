@@ -1,56 +1,65 @@
-<link rel="stylesheet" type="text/css" href="../static/index/style.css">
+<link rel="stylesheet" type="text/css" href="../static/index/style.css" data-genuitec-lp-enabled="false"
+      data-genuitec-file-id="wc1-3" data-genuitec-path="/weChat/WebRoot/apps/index.html">
 <div class="quit-div">
     <button class="loginout">退出</button>
-  </div>
-  <div class="log-img"><img class="netbar_icon" /></div>
-  <div class="you-name"></div>
-  <p class="show-p">授权台数：<span class="authorized_num"></span>台</p>
-  <p class="show-p">到期时间：<span class="due_time"></span></p>
-  <div class="select-area">
+</div>
+<div class="log-img"><img class="netbar_icon"/></div>
+<div class="you-name"></div>
+<p class="show-p">授权台数：<span class="authorized_num"></span>台</p>
+<p class="show-p">到期时间：<span class="due_time"></span></p>
+<div class="select-area">
     <div class="select-item">
-      <a href="javascript:void(0);" class="attendance_btn">
-      	<i class="icon_lg">
-        	<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_attendance_svg"></use></svg>
-        	<p>上座情况</p>
-        </i>
-      </a>
+        <a href="javascript:void(0);" class="attendance_btn">
+            <i class="icon_lg">
+                <svg class="svg_icon" viewBox="0 0 1024 1024">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_attendance_svg"></use>
+                </svg>
+                <p>上座情况</p>
+            </i>
+        </a>
     </div>
     <div class="select-item left-b">
-      <div class="message_count clue"></div>
-      <a href="javascript:void(0);" class="message_btn">
-      	<i class="icon_lg">
-        	<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_message_svg"></use></svg>
-        	<p>玩家留言</p>
-        </i>
-      </a>
+        <div class="message_count clue"></div>
+        <a href="javascript:void(0);" class="message_btn">
+            <i class="icon_lg">
+                <svg class="svg_icon" viewBox="0 0 1024 1024">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_message_svg"></use>
+                </svg>
+                <p>玩家留言</p>
+            </i>
+        </a>
     </div>
     <div class="select-item">
-      <a href="javascript:void(0);" class="download_btn">
-      	<i class="icon_lg">
-        	<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_download_svg"></use></svg>
-        	<p>游戏下载</p>
-        </i>
-      </a>
+        <a href="javascript:void(0);" class="download_btn">
+            <i class="icon_lg">
+                <svg class="svg_icon" viewBox="0 0 1024 1024">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_download_svg"></use>
+                </svg>
+                <p>游戏下载</p>
+            </i>
+        </a>
     </div>
     <div class="select-item left-b">
-      <div class="notice_count clue"></div>
-      <a href="javascript:void(0);" class="notice_btn">
-      	<i class="icon_lg">
-        	<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_notice_svg"></use></svg>
-        	<p>重要通知</p>
-        </i>
-      </a>
+        <div class="notice_count clue"></div>
+        <a href="javascript:void(0);" class="notice_btn">
+            <i class="icon_lg">
+                <svg class="svg_icon" viewBox="0 0 1024 1024">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#_notice_svg"></use>
+                </svg>
+                <p>重要通知</p>
+            </i>
+        </a>
     </div>
     <div class="wangheng">上海网恒文化传播有限公司</div>
-  </div>
+</div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  seajs.config({
-    base: "../sea-modules/",
-    alias: {}
-  });
-  // 加载入口模块
-  seajs.use("../static/index/src/main")
-});
+    $(document).ready(function () {
+        seajs.config({
+            base: "../sea-modules/",
+            alias: {}
+        });
+        // 加载入口模块
+        seajs.use("../static/index/src/main")
+    });
 </script>

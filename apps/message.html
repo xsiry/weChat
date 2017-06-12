@@ -1,62 +1,63 @@
-<link rel="stylesheet" href="../static/css/weui.min.css" />
+<link rel="stylesheet" href="../static/css/weui.min.css" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-4"
+      data-genuitec-path="/weChat/WebRoot/apps/message.html"/>
 <link rel="stylesheet" type="text/css" href="../static/message/style.css">
 
 <div class="msg_setting img-circle">
-	<div class="tools_div">
-		<div class="weui-cells weui-cells_form">
-			<div class="weui-cell weui-cell_switch">
-				<div class="weui-cell__bd">
-					<div class="arrow-left arrow-box" >
-	        			<a class="left_btn" href="javascript:void(0);">
-	        			<b class="left">
-	        				<i class="left-arrow1"></i>
-	        				<i class="left-arrow2"></i>
-	        			</b>
-	        			</a>
-    				</div>
-					<div class="arrow-right arrow-box" style="display:none;">
-						<a class="right_btn" href="javascript:void(0);">
-						<b class="right">
-							<i class="right-arrow1"></i>
-							<i class="right-arrow2"></i>
-						</b>
-						</a>
-					</div>
-					&nbsp;&nbsp;&nbsp;留言审核模式
-				</div>
-				<div class="weui-cell__ft">
-					<label for="switchP" class="weui-switch-cp">
-						<input id="switchP" class="weui-switch-cp__input msg_checkout" type="checkbox">
-						<div class="weui-switch-cp__box"></div>
-					</label>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="tools_div">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">
+                    <div class="arrow-left arrow-box">
+                        <a class="left_btn" href="javascript:void(0);">
+                            <b class="left">
+                                <i class="left-arrow1"></i>
+                                <i class="left-arrow2"></i>
+                            </b>
+                        </a>
+                    </div>
+                    <div class="arrow-right arrow-box" style="display:none;">
+                        <a class="right_btn" href="javascript:void(0);">
+                            <b class="right">
+                                <i class="right-arrow1"></i>
+                                <i class="right-arrow2"></i>
+                            </b>
+                        </a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;留言审核模式
+                </div>
+                <div class="weui-cell__ft">
+                    <label for="switchP" class="weui-switch-cp">
+                        <input id="switchP" class="weui-switch-cp__input msg_checkout" type="checkbox">
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <article class="msg_content">
-  <section class="msg_content_panel" style="display:block">
-  </section>
+    <section class="msg_content_panel" style="display:block">
+    </section>
 </article>
-<input type="hidden" name="pageNo" class="page_no" value="1" />
+<input type="hidden" name="pageNo" class="page_no" value="1"/>
 <div class="reply_content">
-	<div class="reply_title">
-		回复：<span class="reply_number_msg"></span> 号机玩家 <span class="msgid_msg"
-			style="display:none;"></span>
-	</div>
-	<div class="reply_msg pull-left">
+    <div class="reply_title">
+        回复：<span class="reply_number_msg"></span> 号机玩家 <span class="msgid_msg"
+                                                             style="display:none;"></span>
+    </div>
+    <div class="reply_msg pull-left">
 		<pre id="editArea" contenteditable-directive="" mm-paste=""
-			contenteditable="true" class="flex"></pre>
-	</div>
-	<div class="pull-right reply_msg_btn">
-		<button type="button" class="btn btn-info reply_cancel_btn">取消</button>
-		<button type="button" class="btn btn-success reply_commit_btn">回复</button>
-	</div>
+             contenteditable="true" class="flex"></pre>
+    </div>
+    <div class="pull-right reply_msg_btn">
+        <button type="button" class="btn btn-info reply_cancel_btn">取消</button>
+        <button type="button" class="btn btn-success reply_commit_btn">回复</button>
+    </div>
 </div>
 <script type="text/javascript" src="../sea-modules/dropload/dropload.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		seajs.use('../static/message/src/main');
-	});
+    $(document).ready(function () {
+        seajs.use('../static/message/src/main');
+    });
 </script>
 

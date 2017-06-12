@@ -62,6 +62,12 @@ define(function(require, exports, module) {
   };
 
   function loginSubmit() {
+    var valid = $("#loginFrom").data('bootstrapValidator').isValid();
+    if (valid == false) {
+      $("#loginFrom").data('bootstrapValidator').validate();
+      return;
+    }
+
     $.ajax({
       type: 'POST',
       contentType: 'application/json',

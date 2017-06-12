@@ -1,50 +1,37 @@
-<style type="text/css">
-.icon_lg_text {
-	height: 16px;
-    width: 8rem;
-    display: block;
-    margin: 0 auto 3px;
-    overflow: hidden;
-}
-
-.svg_icon_text {
-	color: #5ac1f8;
-	line-height: 25px;
-}
-
-.msg_details_btn {
-    display: inline-block;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-.detail_panel {
-	margin: 0 auto;
-	margin-top: 12px;
-    width: 95%;
-    overflow-x: hidden;
-	overflow-y: visible;
-	display: none;
-	border-radius: 5px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="../static/notice/style.css">
+<div class="msg_setting img-circle">
+    <div class="tools_div">
+                    <div class="arrow-left arrow-box">
+                        <a class="left_btn" href="javascript:void(0);">
+                            <b class="left">
+                                <i class="left-arrow1"></i>
+                                <i class="left-arrow2"></i>
+                            </b>
+                        </a>
+                    </div>
+                    <div class="arrow-right arrow-box" style="display:none;">
+                        <a class="right_btn" href="javascript:void(0);">
+                            <b class="right">
+                                <i class="right-arrow1"></i>
+                                <i class="right-arrow2"></i>
+                            </b>
+                        </a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" class="read_all">全部标记已读</a>
+    </div>
+</div>
 <div class="detail_panel">
-	<div class="notice_detail">
-	</div>
+    <div class="notice_detail">
+    </div>
 </div>
 <article class="notice_content">
-  <section class="notice_content_panel" style="display:block">
-  </section>
+    <section class="notice_content_panel" style="display:block">
+    </section>
 </article>
-<input type="hidden" name="pageNo" class="page_no" value="1" />
+<input type="hidden" name="pageNo" class="page_no" value="1"/>
 <script type="text/javascript" src="../sea-modules/dropload/dropload.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-  seajs.use('../static/notice/src/main');
-})
+    $(document).ready(function () {
+        seajs.use('../static/notice/src/main');
+    })
 </script>

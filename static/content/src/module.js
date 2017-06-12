@@ -141,11 +141,11 @@ define(function(require, exports, module) {
 		$.ajax({
 			type : 'GET',
 			contentType : 'application/json',
-			url : '/weChat/loginOut.do',
+			url : '/wxroot/loginOut.do',
 			dataType : 'json',
 			success : function(data) {
 				if (data) {
-					location.href = "/weChat/login.html";
+					location.href = "/wxroot/login.html";
 				}
 			},
 			error : function(e) {}

@@ -1,35 +1,39 @@
-<link rel="stylesheet" type="text/css" href="../static/download/style.css">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="search-input">
-				<div class="col-xs-9">
-					<input class="form-control pull-left placeholder search_name" placeholder="下载游戏到网吧服务器" type="text" style="margin-top: -1px;" />
-				</div>
-				<div class="col-xs-3">
-					<a href="javascript:void(0);" class="btn btn-success btn-sm pull-left search_btn">查询游戏</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<article class="search_games">
-				<section class="search_games_panel" style="display:block">
-				</section>
-			</article>
-			<input type="hidden" name="pageNo" class="page_no" value="1" />
-	  </div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="top_games center-block" style="margin-top:12px;">
-			</div>
-			<div class="top_detail_btn center-block"><<展开列表>></div>
-		</div>
-	</div>
+<link rel="stylesheet" type="text/css" href="../static/download/style.css" data-genuitec-lp-enabled="false"
+      data-genuitec-file-id="wc1-2" data-genuitec-path="/weChat/WebRoot/apps/download.html">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="search-input">
+            <div class="col-xs-9">
+                <input class="form-control pull-left placeholder search_name" placeholder="下载游戏到网吧服务器" type="text"
+                       style="margin-top: -1px;"/>
+            </div>
+            <div class="col-xs-3">
+                <a href="javascript:void(0);" class="btn btn-success btn-sm pull-left search_btn">查询游戏</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <article class="search_games">
+            <section class="search_games_panel" style="display:block">
+            </section>
+        </article>
+        <input type="hidden" name="pageNo" class="page_no" value="1"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="top_games center-block" style="margin-top: 2rem;">
+        </div>
+        <div class="top_detail_btn center-block">
+            &lt;&lt;展开列表&gt;&gt;
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="../sea-modules/dropload/dropload.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	seajs.use('../static/download/src/main');
-})
+    $(document).ready(function () {
+        seajs.use('../static/download/src/main');
+    })
 </script>

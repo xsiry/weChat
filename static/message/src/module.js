@@ -40,7 +40,7 @@ define(function(require, exports, module) {
 				rowobj = null;
 			})
 			$.root_.off('click', '.right_btn').on('click', '.right_btn', function() {
-				$('div.tools_div').css('transform','translate(159px,0px)');
+				$('div.tools_div').css('transform','translate(162px,0px)');
 				$('div.arrow-right').hide();
 				$('div.arrow-left').show();
 			})
@@ -106,8 +106,9 @@ define(function(require, exports, module) {
 								var obj = list[i];
 								result
 									+= ''
+									+ (i == 0 ? ('<input type="hidden" name="ucid" class="ucid" value="'+ obj.ucid +'" />') : '')
 									+ '<div class="x_act content-block content-block-m content_block_msg_' + obj.msgid + '">'
-									+ '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3><p>' + obj.content + '</p>'
+									+ '<h3><span class="number_msg_' + obj.msgid + '">' + obj.machineNo + '</span> 号机玩家留言</h3>' + obj.content
 									+ '<div class="ad-Reply ad_reply_' + obj.msgid + '" style="' + ((obj.adminReply == null || obj.adminReply == '') ? 'display:none;' : '') + '"><span class="ad_name">管理员回复：</span><span class="admin_msg_' + obj.msgid + '">' + obj.adminReply + '</span></div>'
 									+ '<div class="content-bottom"><span>' + toLocaleString(obj.createTime) + '</span>'
 									+ '<span class="pull-right" style="margin-left: 10px;"><a href="javascript:void(0);" class="del_msg_btn" data-msgid=' + obj.msgid + ' ><i class="icon_lg"><svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#del_svg"></use></svg></i></a></span>'
@@ -133,7 +134,8 @@ define(function(require, exports, module) {
 
 	/* 时间处理函数 参数 毫秒 */
 	function toLocaleString(ms) {
-		var dateTime = new Date(ms)
+		var utc = 8*60*60*1000;
+		var dateTime = new Date(ms-utc);
 		function p(s) {
 			return s < 10 ? '0' + s : s;
 		}
@@ -228,13 +230,27 @@ define(function(require, exports, module) {
 			url : 'syssetMsg.do',
 			dataType : 'json',
 			success : function(data) {
+				var statusCheck;
 				if (data && type == "GET") {
 					auditMessage = true;
 					$('.msg_checkout').prop("checked", "checked");
 				}else if (data && type == "POST") {
+					statusCheck = 1;
 					$('.audit_btn').show();
 				}else if (data && type == "DELETE") {
+					statusCheck = 0;
 					$('.audit_btn').hide();
+				}
+				if (type == "POST" || type == "DELETE") {
+					var ucid = $('.ucid').val();
+					$.ajax({
+						type : 'GET',
+						url : 'http://www.yun58.vip/webmessage/msgCheck/'+ ucid +'_' + statusCheck,
+						success : function(data) {},
+						error : function(e) {
+							console.log(e);
+						}
+					});
 				}
 			},
 			error : function(e) {

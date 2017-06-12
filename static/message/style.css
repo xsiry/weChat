@@ -1,7 +1,15 @@
+[genuitec-file-id="wc1-19"],[genuitec-lp-path="/weChat/WebRoot/static/message/style.css"],[genuitec-lp-enabled=false]{
+  /* for codelive */
+}
+
 @CHARSET "UTF-8";
 
 .content-bottom span a {
 	color: #4E90FF;
+}
+
+.content-block> h3 {
+	font-weight: 500;
 }
 
 .reply_content {
@@ -101,7 +109,7 @@ pre {
 
 .tools_div {
 	transition: transform 0.5s;
-	transform: translate(159px,0px);
+	transform: translate(162px,0px);
 	position: fixed;
 	right: 0;
 	top: 0;

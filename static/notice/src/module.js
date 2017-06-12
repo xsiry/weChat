@@ -25,6 +25,19 @@ define(function(require, exports, module) {
 				actionobj.preventDefault();
 				rowobj = null;
 			})
+            $.root_.off('click', '.right_btn').on('click', '.right_btn', function() {
+                $('div.tools_div').css('transform','translate(115px,0px)');
+                $('div.arrow-right').hide();
+                $('div.arrow-left').show();
+            })
+            $.root_.off('click', '.left_btn').on('click', '.left_btn', function() {
+                $('div.tools_div').css('transform','translate(0px,0px)');
+                $('div.arrow-left').hide();
+                $('div.arrow-right').show();
+            })
+            $.root_.off('click', '.read_all').on('click', '.read_all', function() {
+                readAllNotices();
+            })
 		},
 		_loadContent: function() {
 			load();
@@ -75,7 +88,7 @@ define(function(require, exports, module) {
 									+= ''
 									+ '<div class="x_act content-block content-block-m content-block_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">'
 									+ '<h3 class="notice_title' + obj.infoid + '">' + obj.idtitle + '</h3>'
-									+ '<p class="idcontent_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">' + obj.idcontent.substring(0, 50) + ((obj.idcontent.length >= 20) ? '……' : '') + '</p>'
+									+ '<p class="idcontent_' + obj.infoid + ' ' + (obj.wxread == 0 ? '' : 'c-b') + '">' + obj.idcontent.replace(/<[^>]+>/g,"").substring(0, 50) + ((obj.idcontent.replace(/<[^>]+>/g,"").length >= 50) ? '……' : '') + '</p>'
 									+ '<div class="notice_content' + obj.infoid + '" style="display:none;">' + obj.idcontent + '</div>'
 									+ '<div class="content-bottom"><span class="notice_time' + obj.infoid + '">' + toLocaleString(obj.createtime) + '</span>'
 									+ '<span class="pull-right"><a herf="javascript(0);" class="msg_details_btn msg_details_btn_' + obj.infoid + '" data-infoid= ' + obj.infoid + ' ><i class="icon_lg">' + (obj.wxread == 0 ? '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#view_detail_svg"></use></svg>' : '<svg class="svg_icon" viewBox="0 0 1024 1024"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#view_detailed_svg"></use></svg>') + '</i></a></span>'
@@ -99,7 +112,8 @@ define(function(require, exports, module) {
 
 	/* 时间处理函数 参数 毫秒 */
 	function toLocaleString(ms) {
-		var dateTime = new Date(ms)
+		var utc = 8*60*60*1000;
+		var dateTime = new Date(ms-utc);
 
 		function p(s) {
 			return s < 10 ? '0' + s : s;
@@ -175,4 +189,22 @@ define(function(require, exports, module) {
 				}
 			});
 	}
+
+	function readAllNotices() {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: 'readAllNotices.json',
+            dataType: 'json',
+            success: function(data) {
+                if (data) {
+                    $('.notice_bbtn').click();
+                    noticeCount();
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    }
 })
